@@ -50,23 +50,25 @@ const Hero = () => {
           <div className="space-y-10 backdrop-blur-md bg-white/50 p-10 rounded-3xl border border-gray-200/60 shadow-sm">
             {/* Badge */}
             <div
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full 
-    bg-gradient-to-r from-[var(--color-primary)]/10 to-[var(--color-accent)]/10 
-    text-[var(--color-primary)] 
-    text-sm font-semibold 
-    tracking-wide
-    border border-[var(--color-primary)]/20"
-            >
-              <Shield className="w-4 h-4" />
-              Servicios Técnicos Industriales
-            </div>
+  className="
+    inline-flex items-center gap-2 px-6 py-2.5 rounded-full
+    bg-gradient-to-r from-orange-500/20 to-orange-500/5
+    text-orange-400 text-sm font-semibold
+    border border-orange-500/30
+    shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_8px_30px_rgba(255,140,0,0.15)]
+  "
+>
+  <Shield className="w-4 h-4" />
+  Servicios Técnicos Industriales
+</div>
+
 
             {/* Título */}
             <div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-5 leading-tight tracking-tight">
                 Hacemos que
                 <span className="block bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] bg-clip-text text-transparent">
-                  funcione
+                  Funcione
                 </span>
               </h1>
 

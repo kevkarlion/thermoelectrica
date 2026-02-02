@@ -117,7 +117,7 @@ const Services = () => {
       <div className="container-custom">
         {/* Encabezado */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-6 py-2 bg-[#1a1a1a]  rounded-xl mb-6 border border-primary/20">
+          <div className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-br from-gray-900 to-gray-800  rounded-xl mb-6 border border-primary/20">
             <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
             <span className="text-sm font-semibold text-white uppercase tracking-wider">
               Nuestros Servicios

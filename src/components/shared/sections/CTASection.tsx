@@ -1,6 +1,6 @@
 'use client';
 
-import { Phone, Mail, Calendar, CheckCircle } from 'lucide-react';
+import { Phone, Mail, Calendar, CheckCircle, ShoppingBag, Heart, Factory, Building } from 'lucide-react';
 import Link from 'next/link';
 
 const CTASection = () => {
@@ -205,31 +205,45 @@ const CTASection = () => {
           </div>
 
           {/* Trust Badges */}
-          <div className="mt-16 pt-12 border-t border-gray-300">
-            <div className="text-center mb-8">
-              <h3 className="text-xl font-bold mb-2">Empresas que confían en nosotros</h3>
-              <p className="text-[var(--color-text-light)]">Sectores donde brindamos servicios</p>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="bg-white p-6 rounded-xl border border-gray-200 text-center hover:shadow-md transition-shadow">
-                <div className="text-2xl mb-3">🏨</div>
-                <div className="font-semibold">Hotelero</div>
-              </div>
-              <div className="bg-white p-6 rounded-xl border border-gray-200 text-center hover:shadow-md transition-shadow">
-                <div className="text-2xl mb-3">🏭</div>
-                <div className="font-semibold">Industrial</div>
-              </div>
-              <div className="bg-white p-6 rounded-xl border border-gray-200 text-center hover:shadow-md transition-shadow">
-                <div className="text-2xl mb-3">🏢</div>
-                <div className="font-semibold">Comercial</div>
-              </div>
-              <div className="bg-white p-6 rounded-xl border border-gray-200 text-center hover:shadow-md transition-shadow">
-                <div className="text-2xl mb-3">🏥</div>
-                <div className="font-semibold">Salud</div>
-              </div>
-            </div>
-          </div>
+          <div className="mt-16 pt-12 border-t border-gray-200">
+  <div className="text-center mb-12">
+    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Sectores Especializados</h3>
+    <p className="text-gray-600 max-w-xl mx-auto">Brindamos servicios técnicos especializados para diferentes industrias</p>
+  </div>
+  
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+  {[
+    { title: "Hotelero", desc: "Hoteles y resorts", Icon: Building },
+    { title: "Industrial", desc: "Plantas y fábricas", Icon: Factory },
+    { title: "Comercial", desc: "Centros comerciales", Icon: ShoppingBag },
+    { title: "Salud", desc: "Hospitales y clínicas", Icon: Heart },
+  ].map(({ title, desc, Icon }) => (
+    <div
+      key={title}
+      className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+    >
+      {/* Glow decorativo */}
+      <div className="absolute -top-20 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-[#0b1e63]/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+      {/* Icon */}
+      <div className="relative mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-[#0b1e63]/5 group-hover:bg-[#0b1e63]/10 transition-colors">
+        <Icon className="h-7 w-7 text-[#0b1e63] group-hover:scale-110 transition-transform" />
+      </div>
+
+      <div className="font-semibold text-gray-900 text-lg mb-1">
+        {title}
+      </div>
+      <p className="text-gray-600 text-sm">
+        {desc}
+      </p>
+
+      {/* Línea inferior elegante */}
+      <div className="mt-4 h-[2px] w-0 mx-auto bg-[#0b1e63] group-hover:w-12 transition-all duration-300 rounded-full" />
+    </div>
+  ))}
+</div>
+
+</div>
         </div>
       </div>
     </section>

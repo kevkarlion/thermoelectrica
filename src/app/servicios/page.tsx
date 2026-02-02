@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 
 import ServiceCard from '@/src/components/shared/ui/ServiceCard';
 import { Thermometer, Snowflake, Target, AlertTriangle, Zap, Briefcase, CheckCircle, Settings, ArrowRight, ChevronRight, ListChecks } from 'lucide-react';
@@ -87,27 +88,22 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="section-padding bg-gradient-to-b from-white via-gray-50/50 to-white">
+    <section id="services" className="section-padding bg-linear-to-b from-white via-gray-50/50 to-white">
       <div className="container-custom">
         {/* Encabezado */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-[var(--color-primary)]/10 to-[var(--color-accent)]/10 rounded-full mb-6 border border-[var(--color-primary)]/20">
-            <div className="w-2 h-2 bg-[var(--color-accent)] rounded-full animate-pulse"></div>
-            <span className="text-sm font-semibold text-[var(--color-primary)] uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-6 py-2 bg-[#1a1a1a]  rounded-xl mb-6 border border-primary/20">
+            <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+            <span className="text-sm font-semibold text-white uppercase tracking-wider">
               Nuestros Servicios
             </span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Soluciones Técnicas <span className="text-[var(--color-primary)]">Especializadas</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            Soluciones Técnicas <span className="text-primary">Especializadas</span>
           </h2>
           
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Descubra nuestra gama completa de servicios técnicos industriales. 
-            <span className="block mt-2 text-sm text-gray-500">
-              💡 Pase el cursor sobre las cards o haga click para ver detalles
-            </span>
-          </p>
+          
         </div>
         
         {/* Grid de Services Cards */}
@@ -122,67 +118,90 @@ const Services = () => {
         </div>
 
         {/* NUEVO CTA - Conoce Todos Nuestros Servicios */}
-        <div className="mt-16 text-center">
-          <div className="relative">
-            {/* Elementos decorativos */}
-            <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-              <div className="w-12 h-12 bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-primary)]/20 rounded-full flex items-center justify-center">
-                <ListChecks className="w-6 h-6 text-[var(--color-primary)]" />
-              </div>
-            </div>
-            
-            {/* CTA Principal */}
-            <div className="bg-gradient-to-r from-white to-gray-50 rounded-2xl p-8 border-2 border-gray-200 shadow-lg">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                ¿Listo para conocer todos nuestros servicios en detalle?
-              </h3>
-              <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-                Explore cada servicio con información completa, casos de éxito, 
-                especificaciones técnicas y testimonios de clientes.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/services/all"
-                  className="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white font-bold text-lg px-8 py-4 rounded-xl hover:shadow-2xl hover:shadow-[var(--color-primary)]/30 transition-all duration-300 hover:scale-105 group"
-                >
-                  <span>Conoce Todos Nuestros Servicios</span>
-                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-3 bg-white text-[var(--color-primary)] font-bold text-lg px-8 py-4 rounded-xl border-2 border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300 hover:scale-105 group"
-                >
-                  <span>Solicitar Cotización</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-              
-              {/* Beneficios adicionales */}
-              <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="flex items-center gap-3 justify-center">
-                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                  </div>
-                  <span className="text-sm text-gray-700">Especificaciones técnicas detalladas</span>
-                </div>
-                <div className="flex items-center gap-3 justify-center">
-                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <Settings className="w-4 h-4 text-blue-600" />
-                  </div>
-                  <span className="text-sm text-gray-700">Casos de éxito reales</span>
-                </div>
-                <div className="flex items-center gap-3 justify-center">
-                  <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <Briefcase className="w-4 h-4 text-orange-600" />
-                  </div>
-                  <span className="text-sm text-gray-700">Testimonios verificados</span>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="mt-16">
+  {/* CTA Principal */}
+  <div className="relative rounded-xl overflow-hidden p-8">
+  {/* Imagen de fondo optimizada con Next.js Image */}
+  <div className="absolute inset-0">
+    <Image
+      src="/img-cta.png" // Cambia por tu imagen
+      alt="Fondo servicios técnicos"
+      fill
+      className="object-cover"
+      quality={90}
+      priority
+    />
+    <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/50" />
+  </div>
+  
+  <div className="relative z-10">
+    <div className="text-center mb-8">
+      <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-500/20 rounded-full mb-6 backdrop-blur-sm">
+        <ListChecks className="w-7 h-7 text-white" />
+      </div>
+      
+      <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+        ¿Listo para conocer nuestros servicios?
+      </h3>
+      <p className="text-white/80 mb-8 max-w-xl mx-auto">
+        Descubra nuestros servicios técnicos especializados con información detallada
+        y casos de éxito documentados.
+      </p>
+    </div>
+    
+    <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+      <Link
+        href="/services/all"
+        className="inline-flex items-center justify-center gap-2 bg-orange-500 text-white font-medium px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors shadow-md"
+      >
+        <span>Ver Servicios Completos</span>
+        <ChevronRight className="w-4 h-4" />
+      </Link>
+      
+      <Link
+        href="/contact"
+        className="inline-flex items-center justify-center gap-2 bg-transparent text-white font-medium px-6 py-3 rounded-lg border border-white/40 hover:bg-white/10 transition-all"
+      >
+        <span>Solicitar Cotización</span>
+        <ArrowRight className="w-4 h-4" />
+      </Link>
+    </div>
+    
+    {/* Separador elegante */}
+    <div className="relative my-8">
+      <div className="absolute inset-0 flex items-center">
+        <div className="w-full border-t border-white/20"></div>
+      </div>
+      <div className="relative flex justify-center">
+        <span className="bg-black/40 backdrop-blur-sm px-4 text-xs text-white/70">INCLUYE</span>
+      </div>
+    </div>
+    
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="text-center">
+        <div className="inline-flex w-10 h-10 items-center justify-center bg-white/10 rounded-lg mb-2 mx-auto backdrop-blur-sm">
+          <CheckCircle className="w-5 h-5 text-orange-400" />
         </div>
+        <div className="font-medium text-white text-sm">Especificaciones técnicas</div>
+      </div>
+      
+      <div className="text-center">
+        <div className="inline-flex w-10 h-10 items-center justify-center bg-white/10 rounded-lg mb-2 mx-auto backdrop-blur-sm">
+          <Settings className="w-5 h-5 text-orange-400" />
+        </div>
+        <div className="font-medium text-white text-sm">Casos de éxito</div>
+      </div>
+      
+      <div className="text-center">
+        <div className="inline-flex w-10 h-10 items-center justify-center bg-white/10 rounded-lg mb-2 mx-auto backdrop-blur-sm">
+          <Briefcase className="w-5 h-5 text-orange-400" />
+        </div>
+        <div className="font-medium text-white text-sm">Testimonios verificados</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
         {/* Sección CTA Original (Mantenida pero menos prominente) */}
         <div className="mt-16">

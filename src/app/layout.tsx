@@ -1,19 +1,24 @@
 import type { Metadata } from 'next';
-import { Inter, Montserrat } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 import '@/src/app/globals.css';
 import Footer from '@/src/components/shared/Footer/Footer';
 import WhatsAppButton from '@/src/components/shared/ui/WhatsAppButton';
 import Navbar from '../components/shared/Navbar/Navbar';
+import { Space_Grotesk, Inter } from 'next/font/google';
+
+
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space',
+  display: 'swap',
+  weight: ['700'], // <--- ¡ASEGÚRATE DE INCLUIR EL 700 AQUÍ!
+});
+
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
-  display: 'swap',
-});
-
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  variable: '--font-montserrat',
   display: 'swap',
 });
 
@@ -56,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={`${inter.variable} ${montserrat.variable}`}>
+    <html lang="es" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

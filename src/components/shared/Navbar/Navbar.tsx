@@ -147,7 +147,7 @@ const Navbar = () => {
             
             <Link
               href="/contact"
-              className="btn-primary ml-4"
+              className="btn-primary ml-4 hover:bg-orange-600 "
             >
               Contacto
             </Link>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
+
 import '@/src/app/globals.css';
 import Footer from '@/src/components/shared/Footer/Footer';
 import WhatsAppButton from '@/src/components/shared/ui/WhatsAppButton';

@@ -10,6 +10,7 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const navItems = [
     { label: 'Inicio', href: '/' },
@@ -21,6 +22,24 @@ const Navbar = () => {
     { label: 'Contacto', href: '/contact' },
   ];
 
+  // Función para cerrar el dropdown con retraso
+  const closeDropdownWithDelay = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 300); // 300ms = 0.3 segundos
+  };
+
+  // Función para cancelar el cierre si el cursor vuelve
+  const cancelCloseDropdown = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
+
   // Cerrar dropdown si se hace click fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -31,11 +50,19 @@ const Navbar = () => {
         !buttonRef.current.contains(event.target as Node)
       ) {
         setIsDropdownOpen(false);
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
       }
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, []);
 
   const dropdownItems = navItems.slice(4, -1); // Items para el dropdown
@@ -79,7 +106,11 @@ const Navbar = () => {
               <button
                 ref={buttonRef}
                 className="flex items-center gap-1 text-[var(--color-text)] hover:text-[var(--color-accent)] font-medium transition-colors py-2"
-                onMouseEnter={() => setIsDropdownOpen(true)}
+                onMouseEnter={() => {
+                  cancelCloseDropdown();
+                  setIsDropdownOpen(true);
+                }}
+                onMouseLeave={closeDropdownWithDelay}
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
                 Más Servicios
@@ -93,8 +124,8 @@ const Navbar = () => {
                     ? 'opacity-100 visible translate-y-0' 
                     : 'opacity-0 invisible -translate-y-2'
                 }`}
-                onMouseEnter={() => setIsDropdownOpen(true)}
-                onMouseLeave={() => setIsDropdownOpen(false)}
+                onMouseEnter={cancelCloseDropdown}
+                onMouseLeave={closeDropdownWithDelay}
               >
                 <div className="py-2">
                   {dropdownItems.map((item) => (

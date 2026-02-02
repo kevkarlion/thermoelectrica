@@ -1,12 +1,21 @@
-/** @type {import('next').NextConfig} */
+// NUEVO (Recomendado)
 const nextConfig = {
   images: {
-    domains: ['localhost'],
-    formats: ['image/avif', 'image/webp'],
-  },
-  experimental: {
-    optimizeCss: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'ejemplo.com',
+        port: '',
+        pathname: '/**', // Esto permite todas las rutas del dominio
+      },
+      {
+        protocol: 'https',
+        hostname: 'otro-sitio.org',
+        port: '',
+        pathname: '/fotos/**', // Esto SOLO permite imágenes en la carpeta /fotos
+      },
+    ],
   },
 }
 
-module.exports = nextConfig
+export default nextConfig;

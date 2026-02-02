@@ -108,7 +108,11 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="section-padding bg-linear-to-b from-white via-gray-50/50 to-white"
+      className="
+    section-padding
+    relative overflow-hidden
+    bg-gradient-to-b from-gray-50 via-white to-gray-50
+  "
     >
       <div className="container-custom">
         {/* Encabezado */}
@@ -129,7 +133,7 @@ const Services = () => {
         {/* Grid de Services Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <ServiceCard key={index} {...service} delay={index * 100} />
+            <ServiceCard key={index} {...service} delay={index * 200} />
           ))}
         </div>
 
@@ -229,7 +233,7 @@ const Services = () => {
 
         {/* Sección CTA Original (Mantenida pero menos prominente) */}
         <div className="mt-16">
-          <div className="bg-gradient-to-r from-[var(--color-primary)]/5 to-[var(--color-accent)]/10 rounded-2xl p-8 border border-gray-200">
+          <div className="bg-linear-to-r from-[var(--color-primary)]/5 to-[var(--color-accent)]/10 rounded-2xl p-8 border border-gray-200">
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
@@ -259,32 +263,39 @@ const Services = () => {
         </div>
 
         {/* Estadísticas */}
-        <div className="mt-12 grid md:grid-cols-3 gap-6">
-          <div className="text-center p-6 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-            <div className="text-3xl font-bold text-[var(--color-primary)] mb-2">
+        <div className="mt-20 grid md:grid-cols-3 gap-8">
+          <div className="group text-center p-10 rounded-2xl border border-gray-200/60 bg-white/80 backdrop-blur-md shadow-sm hover:shadow-xl transition-all duration-300">
+            <div className="text-5xl font-extrabold text-[var(--color-primary)] mb-3 tracking-tight">
               15+
             </div>
-            <div className="text-gray-700 font-medium">Años de experiencia</div>
+            <div className="text-gray-800 font-semibold text-lg">
+              Años de experiencia
+            </div>
           </div>
-          <div className="text-center p-6 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-            <div className="text-3xl font-bold text-[var(--color-primary)] mb-2">
+
+          <div className="group text-center p-10 rounded-2xl border border-gray-200/60 bg-white/80 backdrop-blur-md shadow-sm hover:shadow-xl transition-all duration-300">
+            <div className="text-5xl font-extrabold text-[var(--color-primary)] mb-3 tracking-tight">
               500+
             </div>
-            <div className="text-gray-700 font-medium">
+            <div className="text-gray-800 font-semibold text-lg">
               Proyectos ejecutados
             </div>
           </div>
-          <div className="text-center p-6 bg-white rounded-xl border border-gray-200 hover:shadow-md transition-shadow">
-            <div className="text-3xl font-bold text-[var(--color-primary)] mb-2">
+
+          <div className="group text-center p-10 rounded-2xl border border-gray-200/60 bg-white/80 backdrop-blur-md shadow-sm hover:shadow-xl transition-all duration-300">
+            <div className="text-5xl font-extrabold text-[var(--color-primary)] mb-3 tracking-tight">
               24/7
             </div>
-            <div className="text-gray-700 font-medium">Soporte técnico</div>
+            <div className="text-gray-800 font-semibold text-lg">
+              Soporte técnico
+            </div>
           </div>
         </div>
 
         {/* Nota final */}
-        <div className="mt-12 text-center">
-          <p className="text-gray-500 text-sm">
+        <div className="mt-16 text-center">
+          <p className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gray-100 text-gray-700 text-sm font-medium shadow-sm">
+            <span className="text-[var(--color-primary)] font-semibold">✔</span>
             Todos nuestros servicios incluyen garantía, personal certificado y
             seguimiento post-intervención.
           </p>

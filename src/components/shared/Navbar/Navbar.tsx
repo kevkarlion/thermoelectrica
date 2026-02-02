@@ -12,6 +12,18 @@ const Navbar = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Cerrar mobile si pasamos a desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const navItems = [
     { label: 'Inicio', href: '/' },
     { label: 'Servicios', href: '/services' },
@@ -22,90 +34,82 @@ const Navbar = () => {
     { label: 'Contacto', href: '/contact' },
   ];
 
-  // Función para cerrar el dropdown con retraso
+  const dropdownItems = navItems.slice(4, -1);
+
   const closeDropdownWithDelay = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
       setIsDropdownOpen(false);
-    }, 300); // 300ms = 0.3 segundos
+    }, 200);
   };
 
-  // Función para cancelar el cierre si el cursor vuelve
   const cancelCloseDropdown = () => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
   };
 
-  // Cerrar dropdown si se hace click fuera
+  // Click fuera del dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        dropdownRef.current && 
+        dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node) &&
-        buttonRef.current && 
+        buttonRef.current &&
         !buttonRef.current.contains(event.target as Node)
       ) {
         setIsDropdownOpen(false);
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-        }
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
-    return () => {
+    return () =>
       document.removeEventListener('mousedown', handleClickOutside);
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
   }, []);
 
-  const dropdownItems = navItems.slice(4, -1); // Items para el dropdown
-
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
+    <header
+      className="
+        sticky top-0 z-50 border-b border-gray-200/60
+        bg-white lg:bg-white/80
+        lg:backdrop-blur-md
+      "
+    >
       <nav className="container-custom">
         <div className="flex justify-between items-center h-20">
+          
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="relative w-64 h-14">
+            <div className="relative w-56 h-22">
               <Image
-                src="/logo-termoe.png"
-                alt="Thermolectrica - Servicios Técnicos Industriales"
+                src="/logo-nav.png"
+                alt="Thermolectrica"
                 fill
                 priority
-                sizes="(max-width: 768px) 160px, 192px"
                 className="object-contain object-left"
-                style={{
-                  objectFit: 'contain',
-                  objectPosition: 'left center',
-                }}
               />
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          {/* Desktop */}
+          <div className="hidden lg:flex items-center gap-10">
             {navItems.slice(0, 4).map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-[var(--color-text)] hover:text-[var(--color-accent)] font-medium transition-colors py-2"
+                className="
+                  relative text-[var(--color-text)] font-medium
+                  after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                  after:w-0 after:bg-[var(--color-accent)]
+                  hover:after:w-full after:transition-all
+                "
               >
                 {item.label}
               </Link>
             ))}
-            
-            {/* Dropdown Mejorado */}
+
+            {/* Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
                 ref={buttonRef}
-                className="flex items-center gap-1 text-[var(--color-text)] hover:text-[var(--color-accent)] font-medium transition-colors py-2"
+                className="flex items-center gap-1 text-[var(--color-text)] font-medium"
                 onMouseEnter={() => {
                   cancelCloseDropdown();
                   setIsDropdownOpen(true);
@@ -114,72 +118,96 @@ const Navbar = () => {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
                 Más Servicios
-                <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform ${
+                    isDropdownOpen ? 'rotate-180' : ''
+                  }`}
+                />
               </button>
-              
-              {/* Dropdown Menu */}
-              <div 
-                className={`absolute left-0 top-full mt-2 bg-white shadow-xl rounded-lg w-56 transition-all duration-200 origin-top ${
-                  isDropdownOpen 
-                    ? 'opacity-100 visible translate-y-0' 
-                    : 'opacity-0 invisible -translate-y-2'
-                }`}
+
+              <div
+                className={`
+                  absolute left-0 top-full mt-4 w-64 rounded-2xl
+                  bg-white/90 backdrop-blur-md shadow-xl
+                  border border-gray-200/60
+                  transition-all duration-200 origin-top
+                  ${
+                    isDropdownOpen
+                      ? 'opacity-100 scale-100'
+                      : 'opacity-0 scale-95 pointer-events-none'
+                  }
+                `}
                 onMouseEnter={cancelCloseDropdown}
                 onMouseLeave={closeDropdownWithDelay}
               >
-                <div className="py-2">
+                <div className="py-3">
                   {dropdownItems.map((item) => (
                     <Link
                       key={item.label}
                       href={item.href}
-                      className="block px-4 py-3 text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition-colors first:rounded-t-lg last:rounded-b-lg"
+                      className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-100"
                       onClick={() => setIsDropdownOpen(false)}
                     >
                       {item.label}
                     </Link>
                   ))}
                 </div>
-                
-                {/* Flecha del dropdown */}
-                <div className="absolute -top-2 left-6 w-4 h-4 bg-white transform rotate-45 border-t border-l border-gray-200" />
               </div>
             </div>
-            
-            <Link
-              href="/contact"
-              className="btn-primary ml-4 hover:bg-orange-600 "
-            >
+
+            <Link href="/contact" className="btn-primary">
               Contacto
             </Link>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile button */}
           <button
-            className="lg:hidden"
-            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center"
+            onClick={() => setIsOpen(true)}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            <Menu size={22} />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Overlay */}
+      <div
+        className={`
+          lg:hidden fixed inset-0 z-50 bg-black/40 transition-opacity
+          ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
+        `}
+        onClick={() => setIsOpen(false)}
+      />
+
+      {/* Mobile Drawer */}
+      <div
+        className={`
+          lg:hidden fixed right-0 top-0 h-full w-[85%] max-w-sm z-50
+          bg-white shadow-xl p-6
+          transition-transform duration-300 ease-out
+          ${isOpen ? 'translate-x-0' : 'translate-x-full'}
+        `}
+      >
+        <div className="flex justify-between items-center mb-8">
+          <span className="font-semibold text-lg">Menú</span>
+          <button onClick={() => setIsOpen(false)}>
+            <X size={24} />
           </button>
         </div>
 
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="lg:hidden bg-white border-t">
-            <div className="py-4 space-y-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="block px-4 py-3 text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition-colors rounded-lg mx-2"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
-      </nav>
+        <div className="space-y-4">
+          {navItems.map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="block text-lg font-medium text-gray-800"
+              onClick={() => setIsOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </div>
     </header>
   );
 };

@@ -47,37 +47,43 @@ const Hero = () => {
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Columna izquierda - Texto y CTA */}
-          <div className="space-y-8 backdrop-blur-sm bg-white/40 p-8 rounded-2xl border border-gray-200/50 shadow-sm">
+          <div className="space-y-10 backdrop-blur-md bg-white/50 p-10 rounded-3xl border border-gray-200/60 shadow-sm">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[var(--color-primary)]/10 to-[var(--color-accent)]/10 text-[var(--color-primary)] rounded-full border border-[var(--color-primary)]/20">
+            <div
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full 
+    bg-gradient-to-r from-[var(--color-primary)]/10 to-[var(--color-accent)]/10 
+    text-[var(--color-primary)] 
+    text-sm font-semibold 
+    tracking-wide
+    border border-[var(--color-primary)]/20"
+            >
               <Shield className="w-4 h-4" />
-              <span className="text-sm font-semibold">
-                Servicios Técnicos Industriales
-              </span>
+              Servicios Técnicos Industriales
             </div>
 
-            {/* Título principal */}
+            {/* Título */}
             <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-5 leading-tight tracking-tight">
                 Hacemos que
-                <span className="block text-[var(--color-accent)] bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] bg-clip-text text-transparent">
+                <span className="block bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] bg-clip-text text-transparent">
                   funcione
                 </span>
               </h1>
 
-              <p className="text-lg text-gray-700 leading-relaxed max-w-lg">
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl">
                 Especialistas en sistemas térmicos, eléctricos y de
                 climatización. Soluciones integrales para el sector hotelero,
                 industrial y comercial.
               </p>
             </div>
 
-            {/* Lista de beneficios */}
-            {/* Lista de beneficios - Versión sobria y elegante */}
-            {/* Lista de beneficios - Con toque sutil de color */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-200">
-                <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center border border-gray-200">
+            {/* Beneficios */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="flex items-center gap-4 p-5 bg-white/80 rounded-xl border border-gray-200/70 shadow-sm hover:shadow-md transition-all duration-300">
+                <div
+                  className="w-12 h-12 rounded-lg flex items-center justify-center 
+        bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200"
+                >
                   <CheckCircle className="w-6 h-6 text-gray-700" />
                 </div>
                 <div>
@@ -88,8 +94,11 @@ const Hero = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:border-gray-200">
-                <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center border border-gray-200">
+              <div className="flex items-center gap-4 p-5 bg-white/80 rounded-xl border border-gray-200/70 shadow-sm hover:shadow-md transition-all duration-300">
+                <div
+                  className="w-12 h-12 rounded-lg flex items-center justify-center 
+        bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200"
+                >
                   <Zap className="w-6 h-6 text-gray-700" />
                 </div>
                 <div>
@@ -103,11 +112,12 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Botones de acción */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <Link
                 href="/contact"
-                className="btn-primary inline-flex items-center justify-center gap-2 group shadow-lg hover:shadow-xl hover:bg-orange-600"
+                className="btn-primary inline-flex items-center justify-center gap-2 
+      shadow-lg hover:shadow-xl hover:bg-orange-600 transition-all"
               >
                 <span>Solicitar Servicio</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -115,23 +125,28 @@ const Hero = () => {
 
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-gray-700 font-semibold bg-white/70 border-2 border-gray-300/70 rounded-lg hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] hover:bg-white transition-all duration-300 backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 
+      text-gray-700 font-semibold 
+      bg-white/80 border border-gray-300/70 rounded-lg 
+      hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] 
+      hover:bg-white transition-all duration-300 backdrop-blur-sm"
               >
                 <Settings className="w-5 h-5" />
-                <span>Ver Servicios</span>
+                Ver Servicios
               </Link>
             </div>
 
-            {/* Trust indicators */}
-            <div className="pt-6 border-t border-gray-300/50">
-              <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
-                <div className="flex items-center gap-2 backdrop-blur-sm bg-white/50 px-3 py-1.5 rounded-lg">
+            {/* Trust */}
+            <div className="pt-6 border-t border-gray-200/60">
+              <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-gray-200/60">
                   <Sparkles className="w-4 h-4 text-[var(--color-accent)]" />
-                  <span>Personal certificado</span>
+                  Personal certificado
                 </div>
-                <div className="flex items-center gap-2 backdrop-blur-sm bg-white/50 px-3 py-1.5 rounded-lg">
+
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-sm border border-gray-200/60">
                   <Shield className="w-4 h-4 text-[var(--color-primary)]" />
-                  <span>Garantía en servicios</span>
+                  Garantía en servicios
                 </div>
               </div>
             </div>

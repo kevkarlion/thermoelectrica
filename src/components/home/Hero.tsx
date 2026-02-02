@@ -1,79 +1,209 @@
+import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowRight, Shield, Zap, Settings, CheckCircle, Sparkles } from 'lucide-react';
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[80dvh] flex items-center overflow-hidden">
-      {/* Background with gradient overlay */}
+    <section className="relative min-h-[80dvh] flex items-center overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100">
+      {/* Fondo texturizado con más profundidad */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 gradient-overlay" />
+        {/* Capa base oscura */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/5 via-gray-800/3 to-gray-900/5" />
+        
+        {/* Patrón geométrico sutil */}
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: 'url("/images/hero-background.jpg")',
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 0c33.137 0 60 26.863 60 60 0 33.137-26.863 60-60 60C26.863 120 0 93.137 0 60 0 26.863 26.863 0 60 0zm0 20c-22.091 0-40 17.909-40 40s17.909 40 40 40 40-17.909 40-40-17.909-40-40-40z' fill='%231F3C73' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+            backgroundSize: '80px 80px',
           }}
         />
+        
+        {/* Gradientes sutiles para profundidad */}
+        <div className="absolute top-0 left-0 w-1/2 h-full bg-gradient-to-r from-[var(--color-primary)]/5 to-transparent" />
+        <div className="absolute bottom-0 right-0 w-1/2 h-full bg-gradient-to-l from-[var(--color-accent)]/3 to-transparent" />
+        
+        {/* Brillos difuminados */}
+        <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-[var(--color-primary)]/8 via-transparent to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-[var(--color-accent)]/6 via-transparent to-transparent rounded-full blur-3xl" />
+        
+        {/* Líneas divisorias decorativas */}
+        <div className="absolute inset-y-0 left-1/2 transform -translate-x-1/2 w-px bg-gradient-to-b from-transparent via-gray-300/20 to-transparent" />
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-32 w-0.5 bg-gradient-to-b from-[var(--color-accent)]/30 to-transparent" />
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-32 w-0.5 bg-gradient-to-t from-[var(--color-accent)]/30 to-transparent" />
+        
+        {/* Puntos decorativos */}
+        <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-[var(--color-accent)]/30 rounded-full" />
+        <div className="absolute bottom-1/3 right-1/4 w-3 h-3 bg-[var(--color-primary)]/20 rounded-full" />
       </div>
 
       <div className="container-custom relative z-10">
-        <div className="max-w-3xl">
-          <div className="mb-6">
-            <span className="inline-block px-4 py-2 bg-[var(--color-accent)] text-white text-sm font-semibold rounded-full">
-              Servicios Técnicos Industriales
-            </span>
-          </div>
-          
-          <h1 className="text-white mb-6 animate-fade-in">
-            Hacemos que funcione
-          </h1>
-          
-          <p className="text-xl text-white/90 mb-8 max-w-2xl">
-            Especialistas en sistemas térmicos, eléctricos y de climatización. 
-            Mantenimiento, instalación y diagnóstico para el sector hotelero, 
-            industrial y comercial.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Link 
-              href="/contact" 
-              className="btn-primary text-center px-8 py-4 text-lg"
-            >
-              Solicitar Servicio
-            </Link>
-            <Link 
-              href="/services" 
-              className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 
-                         px-8 py-4 rounded-lg text-center transition-all duration-300"
-            >
-              Ver Servicios
-            </Link>
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          {/* Columna izquierda - Texto y CTA */}
+          <div className="space-y-8 backdrop-blur-sm bg-white/40 p-8 rounded-2xl border border-gray-200/50 shadow-sm">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[var(--color-primary)]/10 to-[var(--color-accent)]/10 text-[var(--color-primary)] rounded-full border border-[var(--color-primary)]/20">
+              <Shield className="w-4 h-4" />
+              <span className="text-sm font-semibold">Servicios Técnicos Industriales</span>
+            </div>
+            
+            {/* Título principal */}
+            <div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
+                Hacemos que 
+                <span className="block text-[var(--color-accent)] bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] bg-clip-text text-transparent">
+                  funcione
+                </span>
+              </h1>
+              
+              <p className="text-lg text-gray-700 leading-relaxed max-w-lg">
+                Especialistas en sistemas térmicos, eléctricos y de climatización. 
+                Soluciones integrales para el sector hotelero, industrial y comercial.
+              </p>
+            </div>
+
+            {/* Lista de beneficios */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex items-center gap-3 p-4 bg-white/70 rounded-xl border border-gray-200/70 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-green-50 rounded-xl flex items-center justify-center border border-green-200/50">
+                  <CheckCircle className="w-6 h-6 text-green-600" />
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-800">15+ años</div>
+                  <div className="text-sm text-gray-600">Experiencia técnica</div>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-3 p-4 bg-white/70 rounded-xl border border-gray-200/70 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-50 rounded-xl flex items-center justify-center border border-blue-200/50">
+                  <Zap className="w-6 h-6 text-blue-600" />
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-800">Soporte 24/7</div>
+                  <div className="text-sm text-gray-600">Emergencias técnicas</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Botones de acción */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Link 
+                href="/contact" 
+                className="btn-primary inline-flex items-center justify-center gap-2 group shadow-lg hover:shadow-xl"
+              >
+                <span>Solicitar Servicio</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              
+              <Link 
+                href="/services" 
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-gray-700 font-semibold bg-white/70 border-2 border-gray-300/70 rounded-lg hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] hover:bg-white transition-all duration-300 backdrop-blur-sm"
+              >
+                <Settings className="w-5 h-5" />
+                <span>Ver Servicios</span>
+              </Link>
+            </div>
+
+            {/* Trust indicators */}
+            <div className="pt-6 border-t border-gray-300/50">
+              <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600">
+                <div className="flex items-center gap-2 backdrop-blur-sm bg-white/50 px-3 py-1.5 rounded-lg">
+                  <Sparkles className="w-4 h-4 text-[var(--color-accent)]" />
+                  <span>Personal certificado</span>
+                </div>
+                <div className="flex items-center gap-2 backdrop-blur-sm bg-white/50 px-3 py-1.5 rounded-lg">
+                  <Shield className="w-4 h-4 text-[var(--color-primary)]" />
+                  <span>Garantía en servicios</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-8 border-t border-white/20">
-            <div>
-              <div className="text-3xl font-bold text-white mb-2">15+</div>
-              <div className="text-white/80">Años de experiencia</div>
+          {/* Columna derecha - Imagen con elementos gráficos */}
+          <div className="relative">
+            {/* Marco decorativo con efectos 3D */}
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-8 border-white/80 bg-gradient-to-br from-white to-gray-100">
+              {/* Gradiente de borde */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/10 via-transparent to-[var(--color-accent)]/5 z-10" />
+              
+              {/* Efecto de luz en borde */}
+              <div className="absolute inset-0 border-[1px] border-white/30 rounded-2xl z-20" />
+              
+              {/* Imagen principal */}
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src="/heros.png"
+                  alt="Técnico especialista Thermolectrica trabajando en sistema HVAC industrial"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={90}
+                  className="object-cover object-center hover:scale-105 transition-transform duration-700"
+                  style={{
+                    objectPosition: 'center 50%',
+                  }}
+                />
+                
+                {/* Overlay de gradiente */}
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent" />
+              </div>
+              
+              {/* Elementos gráficos flotantes */}
+              <div className="absolute -top-6 -right-6 w-32 h-32 z-30">
+                <div className="relative w-full h-full">
+                  <div className="absolute inset-0 bg-white/90 rounded-2xl shadow-xl rotate-6 backdrop-blur-sm" />
+                  <div className="absolute inset-2 bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-dark)] rounded-xl rotate-6 flex items-center justify-center shadow-inner">
+                    <Zap className="w-10 h-10 text-white" />
+                  </div>
+                </div>
+              </div>
+              
+              <div className="absolute -bottom-8 -left-6 w-24 h-24 z-30">
+                <div className="relative w-full h-full">
+                  <div className="absolute inset-0 bg-white/90 rounded-full shadow-xl backdrop-blur-sm" />
+                  <div className="absolute inset-2 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-light)] rounded-full flex items-center justify-center shadow-inner">
+                    <Shield className="w-8 h-8 text-white" />
+                  </div>
+                </div>
+              </div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-white mb-2">500+</div>
-              <div className="text-white/80">Proyectos completados</div>
+
+            {/* Estadísticas flotantes */}
+            <div className="absolute -bottom-6 right-8 z-20">
+              <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-2xl p-5 border border-gray-300/50 transform hover:-translate-y-2 transition-all duration-300 backdrop-blur-sm">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-gray-900">500+</div>
+                  <div className="text-sm text-gray-600 mt-1">Proyectos ejecutados</div>
+                </div>
+              </div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-white mb-2">24/7</div>
-              <div className="text-white/80">Soporte técnico</div>
+
+            {/* Etiqueta de servicio */}
+            <div className="absolute -left-4 top-1/3 transform -translate-y-1/2 z-20">
+              <div className="bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] text-white px-5 py-3 rounded-r-lg shadow-lg flex items-center gap-3 group hover:pr-6 transition-all duration-300">
+                <Settings className="w-5 h-5" />
+                <span className="text-sm font-semibold whitespace-nowrap">HVAC Industrial</span>
+              </div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-white mb-2">100%</div>
-              <div className="text-white/80">Clientes satisfechos</div>
+
+            {/* Elementos gráficos de conexión */}
+            <div className="absolute top-1/2 -left-8 transform -translate-y-1/2 z-10">
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-0.5 bg-gradient-to-r from-[var(--color-accent)]/40 to-transparent" />
+                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-dark)] shadow-md" />
+                <div className="w-10 h-0.5 bg-gradient-to-r from-transparent to-[var(--color-accent)]/40" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse" />
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+          <div className="animate-bounce">
+            <div className="w-8 h-12 border-2 border-gray-400/50 rounded-full flex justify-center backdrop-blur-sm bg-white/30">
+              <div className="w-1.5 h-4 bg-gray-600 rounded-full mt-3 animate-pulse" />
+            </div>
+          </div>
         </div>
       </div>
     </section>

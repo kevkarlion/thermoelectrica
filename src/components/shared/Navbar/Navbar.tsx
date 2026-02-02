@@ -1,11 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const navItems = [
     { label: 'Inicio', href: '/' },
@@ -17,18 +21,44 @@ const Navbar = () => {
     { label: 'Contacto', href: '/contact' },
   ];
 
+  // Cerrar dropdown si se hace click fuera
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current && 
+        !dropdownRef.current.contains(event.target as Node) &&
+        buttonRef.current && 
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const dropdownItems = navItems.slice(4, -1); // Items para el dropdown
+
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md">
       <nav className="container-custom">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">T</span>
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-primary">Thermolectrica</h1>
-              <p className="text-xs text-[var(--color-text-light)]">Servicios Técnicos Industriales</p>
+          <Link href="/" className="flex items-center">
+            <div className="relative w-64 h-14">
+              <Image
+                src="/logo-termoe.png"
+                alt="Thermolectrica - Servicios Técnicos Industriales"
+                fill
+                priority
+                sizes="(max-width: 768px) 160px, 192px"
+                className="object-contain object-left"
+                style={{
+                  objectFit: 'contain',
+                  objectPosition: 'left center',
+                }}
+              />
             </div>
           </Link>
 
@@ -38,33 +68,55 @@ const Navbar = () => {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-text hover:text-accent font-medium transition-colors"
+                className="text-[var(--color-text)] hover:text-[var(--color-accent)] font-medium transition-colors py-2"
               >
                 {item.label}
               </Link>
             ))}
             
-            {/* Dropdown */}
-            <div className="relative group">
-              <button className="text-text hover:text-accent font-medium transition-colors">
+            {/* Dropdown Mejorado */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                ref={buttonRef}
+                className="flex items-center gap-1 text-[var(--color-text)] hover:text-[var(--color-accent)] font-medium transition-colors py-2"
+                onMouseEnter={() => setIsDropdownOpen(true)}
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              >
                 Más Servicios
+                <ChevronDown className={`w-4 h-4 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
-              <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-lg mt-2 w-48">
-                {navItems.slice(4, -1).map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="block px-4 py-2 text-text hover:bg-primary hover:text-white transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+              
+              {/* Dropdown Menu */}
+              <div 
+                className={`absolute left-0 top-full mt-2 bg-white shadow-xl rounded-lg w-56 transition-all duration-200 origin-top ${
+                  isDropdownOpen 
+                    ? 'opacity-100 visible translate-y-0' 
+                    : 'opacity-0 invisible -translate-y-2'
+                }`}
+                onMouseEnter={() => setIsDropdownOpen(true)}
+                onMouseLeave={() => setIsDropdownOpen(false)}
+              >
+                <div className="py-2">
+                  {dropdownItems.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href}
+                      className="block px-4 py-3 text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition-colors first:rounded-t-lg last:rounded-b-lg"
+                      onClick={() => setIsDropdownOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+                
+                {/* Flecha del dropdown */}
+                <div className="absolute -top-2 left-6 w-4 h-4 bg-white transform rotate-45 border-t border-l border-gray-200" />
               </div>
             </div>
             
             <Link
               href="/contact"
-              className="btn-primary"
+              className="btn-primary ml-4"
             >
               Contacto
             </Link>
@@ -87,7 +139,7 @@ const Navbar = () => {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="block px-4 py-2 text-text hover:bg-primary hover:text-white transition-colors"
+                  className="block px-4 py-3 text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition-colors rounded-lg mx-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}

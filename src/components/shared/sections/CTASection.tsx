@@ -91,7 +91,7 @@ const CTASection = () => {
                   <Calendar className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold">Agende una visita técnica</h3>
+                  <h3 className="text-2xl font-bold text-white">Agende una visita técnica</h3>
                   <p className="text-white/80">Complete el formulario y nos pondremos en contacto</p>
                 </div>
               </div>

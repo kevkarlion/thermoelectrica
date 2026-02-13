@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-
+import Link from "next/link";
 import ServiceCard from "@/src/components/shared/ui/ServiceCard";
 import {
   Thermometer,
@@ -8,14 +8,14 @@ import {
   Target,
   AlertTriangle,
   Zap,
-  Briefcase,
   CheckCircle,
   Settings,
   ArrowRight,
   ChevronRight,
   ListChecks,
+  ClipboardCheck,
+  Shield,
 } from "lucide-react";
-import Link from "next/link";
 
 const Services = () => {
   const services = [
@@ -27,8 +27,8 @@ const Services = () => {
       features: [
         "Mantenimiento preventivo programado",
         "Limpieza técnica de UTAs y rooftops",
-        "Diagnóstico de fallas electromecánicas",
-        "Optimización de eficiencia energética",
+        "Diagnostico de fallas térmicas y electromecánicas",
+        "Mejora de rendimiento y consumo del sistema",
       ],
       href: "/services/hvac",
       image: "/hvac.png",
@@ -39,10 +39,10 @@ const Services = () => {
         "Soluciones de frío industrial para procesos productivos y conservación de productos.",
       icon: <Snowflake className="w-8 h-8" />,
       features: [
-        "Mantenimiento de compresores y condensadores",
+        "Mantenimiento de compresores, evaporadores y condensadores",
         "Limpiezas químicas especializadas",
         "Control de refrigerantes y aceites",
-        "Optimización de procesos de frío",
+        "Mejora del rendimiento del sistema de refrigeración",
       ],
       href: "/services/industrial",
       image: "/refrigeracion.png",
@@ -54,9 +54,9 @@ const Services = () => {
       icon: <Target className="w-8 h-8" />,
       features: [
         "Mantenimiento de equipos de precisión",
-        "Ajuste fino de parámetros de operación",
+        "Ajuste y puesta a punto de parámetros de operación",
         "Verificación de redundancias y alarmas",
-        "Planes de continuidad operativa",
+        "Chequeo de respaldo, redundancias y alarmas",
       ],
       href: "/services/precision",
       image: "/refrigeracion-precision.png",
@@ -69,7 +69,7 @@ const Services = () => {
       features: [
         "Inspecciones técnicas de plantas NH₃",
         "Revisión de sistemas de seguridad",
-        "Diagnóstico técnico especializado",
+        "Diagnostico técnico especializado en plantas NH3",
         "Soporte en paradas programadas",
       ],
       href: "/services/ammonia",
@@ -84,23 +84,23 @@ const Services = () => {
         "Mantenimiento de tableros eléctricos",
         "Instalaciones eléctricas industriales",
         "Diagnóstico de fallas eléctricas",
-        "Optimización energética",
+        "Corrección de consumos y perdidas eléctricas",
       ],
       href: "/services/electricity",
       image: "/electricidad-ind.png",
     },
     {
-      title: "Consultoría Técnica",
+      title: "Diagnóstico Técnico en Sitio",
       description:
-        "Asesoramiento especializado para optimización y modernización de sistemas.",
-      icon: <Briefcase className="w-8 h-8" />,
+        "Evaluación presencial y relevamiento detallado para determinar el estado real y la optimización de sus instalaciones.",
+      icon: <ClipboardCheck className="w-8 h-8" />,
       features: [
-        "Auditorías energéticas integrales",
-        "Estudios de viabilidad técnica",
-        "Diseño y planificación de proyectos",
-        "Capacitación del personal técnico",
+        "Evaluación de estado operativo de equipos",
+        "Análisis de fallas y causa raíz",
+        "Recomendaciones técnicas aplicables",
+        "Soporte para decisiones de mantenimiento",
       ],
-      href: "/services/consulting",
+      href: "/services/diagnostico",
       image: "/consulta-tecnica.png",
     },
   ];
@@ -108,196 +108,134 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="
-    section-padding
-    relative overflow-hidden
-    bg-gradient-to-b from-gray-50 via-white to-gray-50
-  "
+      className="section-padding relative overflow-hidden bg-white"
     >
       <div className="container-custom">
         {/* Encabezado */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-6 py-2 bg-gradient-to-br from-gray-900 to-gray-800  rounded-xl mb-6 border border-primary/20">
-            <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+          <div className="inline-flex items-center gap-2 px-6 py-2 bg-gray-900 rounded-xl mb-6 border border-white/10">
+            <div className="w-2 h-2 bg-accent rounded-full"></div>
             <span className="text-sm font-semibold text-white uppercase tracking-wider">
-              Nuestros Servicios
+              Ingeniería en Mantenimiento
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
             Soluciones Técnicas{" "}
-            <span className="text-primary">Especializadas</span>
+            <span className="text-accent italic font-black">
+              Especializadas
+            </span>
           </h2>
         </div>
 
         {/* Grid de Services Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <ServiceCard key={index} {...service} delay={index * 200} />
+            <ServiceCard key={index} {...service} delay={index * 100} />
           ))}
         </div>
 
-        {/* NUEVO CTA - Conoce Todos Nuestros Servicios */}
-        <div className="mt-16">
-          {/* CTA Principal */}
-          <div className="relative rounded-xl overflow-hidden p-8">
-            {/* Imagen de fondo optimizada con Next.js Image */}
-            <div className="absolute inset-0">
-              <Image
-                src="/img-cta.png" // Cambia por tu imagen
-                alt="Fondo servicios técnicos"
-                fill
-                className="object-cover"
-                quality={90}
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/50" />
-            </div>
+        {/* BLOQUE CTA REFORMULADO */}
+        <div className="mt-24 relative rounded-3xl overflow-hidden p-8 md:p-16 border border-gray-200 shadow-2xl">
+          <div className="absolute inset-0">
+            <Image
+              src="/img-cta.png"
+              alt="Mantenimiento Industrial"
+              fill
+              className="object-cover opacity-80" // Subimos al 80% para que se vea casi total
+              quality={100}
+              priority
+            />
+            {/* Overlay degradado: más oscuro a la izquierda (para el texto) y más claro a la derecha */}
+            <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/50 to-transparent" />
 
-            <div className="relative z-10">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-14 h-14 bg-orange-500/20 rounded-full mb-6 backdrop-blur-sm">
-                  <ListChecks className="w-7 h-7 text-white" />
-                </div>
+            {/* Capa de tinte azul/oscuro opcional para dar profundidad industrial */}
+            <div className="absolute inset-0 bg-oxford/30 mix-blend-multiply" />
+          </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  ¿Listo para conocer nuestros servicios?
-                </h3>
-                <p className="text-white/80 mb-8 max-w-xl mx-auto">
-                  Descubra nuestros servicios técnicos especializados con
-                  información detallada y casos de éxito documentados.
-                </p>
+          <div className="relative z-10">
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-accent/20 rounded-full mb-6 border border-accent/30">
+                <ListChecks className="w-8 h-8 text-accent" />
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
+              <h3 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tighter uppercase italic">
+                ¿Listo para conocer nuestros servicios?
+              </h3>
+              <p className="text-white/70 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
+                Garantice la operatividad de su planta con planes de
+                mantenimiento diseñados por expertos en sistemas industriales
+                complejos.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/contact"
+                  className="bg-accent hover:bg-accent-dark text-black font-black uppercase tracking-widest px-10 py-5 rounded-xl transition-all hover:scale-105 flex items-center justify-center gap-3"
+                >
+                  Solicitar Cotización
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+
                 <Link
                   href="/services/all"
-                  className="inline-flex items-center justify-center gap-2 bg-orange-500 text-white font-medium px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors shadow-md"
+                  className="bg-white/5 backdrop-blur-md text-white border border-white/20 font-bold uppercase tracking-widest px-10 py-5 rounded-xl transition-all hover:bg-white/10 flex items-center justify-center gap-3"
                 >
-                  <span>Ver Servicios Completos</span>
-                  <ChevronRight className="w-4 h-4" />
+                  Explorar Catálogo
+                  <ChevronRight className="w-5 h-5" />
                 </Link>
-
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 bg-transparent text-white font-medium px-6 py-3 rounded-lg border border-white/40 hover:bg-white/10 transition-all"
-                >
-                  <span>Solicitar Cotización</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-
-              {/* Separador elegante */}
-              <div className="relative my-8">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-white/20"></div>
-                </div>
-                <div className="relative flex justify-center">
-                  <span className="bg-black/40 backdrop-blur-sm px-4 text-xs text-white/70">
-                    INCLUYE
-                  </span>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="text-center">
-                  <div className="inline-flex w-10 h-10 items-center justify-center bg-white/10 rounded-lg mb-2 mx-auto backdrop-blur-sm">
-                    <CheckCircle className="w-5 h-5 text-orange-400" />
-                  </div>
-                  <div className="font-medium text-white text-sm">
-                    Especificaciones técnicas
-                  </div>
-                </div>
-
-                <div className="text-center">
-                  <div className="inline-flex w-10 h-10 items-center justify-center bg-white/10 rounded-lg mb-2 mx-auto backdrop-blur-sm">
-                    <Settings className="w-5 h-5 text-orange-400" />
-                  </div>
-                  <div className="font-medium text-white text-sm">
-                    Casos de éxito
-                  </div>
-                </div>
-
-                <div className="text-center">
-                  <div className="inline-flex w-10 h-10 items-center justify-center bg-white/10 rounded-lg mb-2 mx-auto backdrop-blur-sm">
-                    <Briefcase className="w-5 h-5 text-orange-400" />
-                  </div>
-                  <div className="font-medium text-white text-sm">
-                    Testimonios verificados
-                  </div>
-                </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Sección CTA Original (Mantenida pero menos prominente) */}
-        <div className="mt-16">
-          <div className="bg-linear-to-r from-[var(--color-primary)]/5 to-[var(--color-accent)]/10 rounded-2xl p-8 border border-gray-200">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  ¿Necesita una solución personalizada?
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  Cada proyecto industrial es único. Contáctenos para una
-                  evaluación personalizada y desarrollemos juntos la solución
-                  perfecta.
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-white/10">
+              <div className="text-center group">
+                <div className="text-3xl font-black text-accent mb-2 italic">
+                  15+ Años
+                </div>
+                <div className="text-white font-bold uppercase text-sm tracking-widest mb-2">
+                  Experiencia Técnica
+                </div>
+                <p className="text-white/50 text-xs">
+                  Mantenimiento y operación profesional en entornos de alta
+                  exigencia.
                 </p>
               </div>
 
-              <div className="text-center lg:text-right">
-                <a
-                  href="/contact"
-                  className="inline-flex items-center gap-3 bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-dark)] text-white font-semibold text-lg px-6 py-3 rounded-lg hover:shadow-xl hover:shadow-[var(--color-accent)]/20 transition-all duration-300 hover:scale-105 group"
-                >
-                  <span>Solicitar Evaluación Técnica</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-                <p className="text-gray-500 text-sm mt-3">
-                  Diagnóstico inicial sin costo
+              <div className="text-center">
+                <div className="inline-flex mb-3">
+                  <Shield className="text-accent w-8 h-8" />
+                </div>
+                <div className="text-white font-bold uppercase text-sm tracking-widest mb-2">
+                  Proyectos Complejos
+                </div>
+                <p className="text-white/50 text-xs">
+                  Trayectoria comprobada en la ejecución de sistemas
+                  industriales integrales.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="inline-flex mb-3">
+                  <Settings className="text-accent w-8 h-8" />
+                </div>
+                <div className="text-white font-bold uppercase text-sm tracking-widest mb-2">
+                  Respaldo Técnico
+                </div>
+                <p className="text-white/50 text-xs">
+                  Documentación de procesos y cumplimiento de normativas
+                  vigentes.
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Estadísticas */}
-        <div className="mt-20 grid md:grid-cols-3 gap-8">
-          <div className="group text-center p-10 rounded-2xl border border-gray-200/60 bg-white/80 backdrop-blur-md shadow-sm hover:shadow-xl transition-all duration-300">
-            <div className="text-5xl font-extrabold text-[var(--color-primary)] mb-3 tracking-tight">
-              15+
-            </div>
-            <div className="text-gray-800 font-semibold text-lg">
-              Años de experiencia
-            </div>
-          </div>
-
-          <div className="group text-center p-10 rounded-2xl border border-gray-200/60 bg-white/80 backdrop-blur-md shadow-sm hover:shadow-xl transition-all duration-300">
-            <div className="text-5xl font-extrabold text-[var(--color-primary)] mb-3 tracking-tight">
-              500+
-            </div>
-            <div className="text-gray-800 font-semibold text-lg">
-              Proyectos ejecutados
-            </div>
-          </div>
-
-          <div className="group text-center p-10 rounded-2xl border border-gray-200/60 bg-white/80 backdrop-blur-md shadow-sm hover:shadow-xl transition-all duration-300">
-            <div className="text-5xl font-extrabold text-[var(--color-primary)] mb-3 tracking-tight">
-              24/7
-            </div>
-            <div className="text-gray-800 font-semibold text-lg">
-              Soporte técnico
-            </div>
-          </div>
-        </div>
-
-        {/* Nota final */}
+        {/* Footer de Sección: Eliminado 24/7 y Diagnósticos Gratuitos */}
         <div className="mt-16 text-center">
-          <p className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gray-100 text-gray-700 text-sm font-medium shadow-sm">
-            <span className="text-[var(--color-primary)] font-semibold">✔</span>
-            Todos nuestros servicios incluyen garantía, personal certificado y
-            seguimiento post-intervención.
+          <p className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gray-50 border border-gray-200 text-gray-600 text-sm font-semibold italic">
+            <CheckCircle className="w-5 h-5 text-accent" />
+            Compromiso con la eficiencia energética y la continuidad
+            operacional.
           </p>
         </div>
       </div>

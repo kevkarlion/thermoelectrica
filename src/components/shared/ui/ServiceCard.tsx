@@ -50,7 +50,7 @@ const ServiceCard = ({
   return (
     <div
       ref={cardRef}
-      className={`relative w-full h-[450px]
+      className={`relative w-full h-120
         ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}
         transition-all duration-700`}
       style={{ perspective: "1400px" }}

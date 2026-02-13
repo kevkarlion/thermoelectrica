@@ -10,7 +10,6 @@ import {
   Factory,
   Building,
 } from "lucide-react";
-import Link from "next/link";
 
 const CTASection = () => {
   const benefits = [
@@ -23,19 +22,19 @@ const CTASection = () => {
   ];
 
   return (
-    <section className="section-padding bg-gradient-to-b from-white to-gray-50">
+    <section className="section-padding bg-linear-to-b from-white to-gray-50">
       {/* Cambio 1: Quitamos container-custom y max-w-6xl del formulario */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span
             className="inline-flex items-center gap-2 px-5 py-2 rounded-full 
-              bg-[var(--color-accent)]/10 
-              text-[var(--color-accent)] 
+              bg-accent/10 
+              text-accent 
               text-sm font-semibold 
               tracking-wide
               mb-6"
           >
-            <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" />
+            <span className="w-2 h-2 rounded-full bg-accent" />
             Listo para comenzar
           </span>
 
@@ -43,7 +42,7 @@ const CTASection = () => {
             Solicite su evaluación técnica
           </h2>
 
-          <p className="text-[var(--color-text-light)] text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-text-light text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Nuestro equipo de especialistas está listo para atender sus
             necesidades en sistemas térmicos, eléctricos y de climatización.
             Garantizamos soluciones confiables y eficientes.
@@ -69,14 +68,14 @@ const CTASection = () => {
                     {/* Icono sobrio */}
                     <div
                       className="
-                        w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0
+                        w-9 h-9 rounded-lg flex items-center justify-center shrink-0
                         bg-gray-100 border border-gray-200
                       "
                     >
                       <CheckCircle className="w-5 h-5 text-gray-700" />
                     </div>
 
-                    <span className="text-[var(--color-text)] leading-relaxed">
+                    <span className="text-text leading-relaxed">
                       {benefit}
                     </span>
                   </div>
@@ -93,8 +92,8 @@ const CTASection = () => {
                     href="tel:+5491112345678"
                     className="
                       flex items-center justify-center gap-2
-                      bg-[var(--color-primary)]
-                      hover:bg-[var(--color-primary-dark)]
+                      bg-primary
+                      hover:bg-primary-dark
                       text-white font-semibold
                       py-3 px-4 rounded-lg
                       transition-all duration-300
@@ -112,8 +111,8 @@ const CTASection = () => {
                       bg-white
                       border-2 border-gray-300
                       text-gray-800
-                      hover:border-[var(--color-primary)]
-                      hover:text-[var(--color-primary)]
+                      hover:border-primary
+                      hover:text-primary
                       font-semibold
                       py-3 px-4 rounded-lg
                       transition-all duration-300
@@ -163,7 +162,7 @@ const CTASection = () => {
               w-screen 
               -mx-4 
               sm:-mx-6 
-              bg-gradient-to-br from-gray-900 to-gray-800 
+              bg-linear-to-br from-gray-900 to-gray-800 
               rounded-none 
               sm:rounded-2xl 
               shadow-2xl 
@@ -373,13 +372,13 @@ const CTASection = () => {
           <div className="text-center mb-16">
             <span
               className="inline-flex items-center gap-2 px-5 py-2 rounded-full 
-                bg-[var(--color-accent)]/10 
-                text-[var(--color-accent)] 
+                bg-accent/10 
+                text-accent 
                 text-sm font-semibold 
                 tracking-wide
                 mb-6"
             >
-              <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" />
+              <span className="w-2 h-2 rounded-full bg-accent" />
               Sectores
             </span>
 
@@ -430,7 +429,7 @@ const CTASection = () => {
                 <p className="text-gray-600 text-sm">{desc}</p>
 
                 {/* Línea inferior elegante */}
-                <div className="mt-4 h-[2px] w-0 mx-auto bg-[#0b1e63] group-hover:w-12 transition-all duration-300 rounded-full" />
+                <div className="mt-4 h-0.5 w-0 mx-auto bg-[#0b1e63] group-hover:w-12 transition-all duration-300 rounded-full" />
               </div>
             ))}
           </div>

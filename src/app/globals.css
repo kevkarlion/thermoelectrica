@@ -5,6 +5,7 @@
   --color-primary: #2b55a4;
   --color-primary-dark: #1a3366;
   --color-primary-light: #2f5597;
+  --color-primary-footer: #0d216d;
   --color-secondary: #2f5597;
   --color-accent: #f57c00;
   --color-accent-dark: #e06b00;
@@ -22,6 +23,12 @@
   /* Animaciones */
   --animation-fade-in: fadeIn 0.5s ease-in-out;
   --animation-slide-up: slideUp 0.3s ease-out;
+
+
+
+
+/* Esto asegura que al cambiar de ruta (donde el foco cambia), 
+el navegador no fuerce la animación de scroll */
 
   @keyframes fadeIn {
     from {
@@ -50,16 +57,20 @@
     color-scheme: light;
   }
 
+  /* Forzamos el scroll instantáneo en el elemento raíz. 
+     Esto evita que el cambio de página de Next.js se deslice lentamente.
+  */
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto !important;
   }
 
   body {
     background-color: var(--color-background);
     color: var(--color-text);
-    /* Usamos la variable que definiste arriba */
     font-family: var(--font-family-sans);
     @apply antialiased;
+    /* Aseguramos que el body no bloquee el scroll */
+    overflow-x: hidden; 
   }
 
   h1, h2, h3, h4 {

@@ -1,0 +1,212 @@
+'use client';
+
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { 
+  Mail, 
+  Phone, 
+  MapPin, 
+  Clock, 
+  Send, 
+  MessageSquare, 
+  Building2, 
+  ShieldCheck 
+} from 'lucide-react';
+
+const ContactPage = () => {
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+    setTimeout(() => setStatus('success'), 1500);
+  };
+
+  return (
+    <main className="min-h-screen bg-slate-50">
+      
+      {/* Header Sección - Fondo Azul Oscuro */}
+      <section className="bg-primary py-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] bg-center" />
+        </div>
+        <div className="container-custom relative z-10 text-center">
+          <h1 className="text-white text-4xl md:text-6xl mb-4 uppercase italic tracking-tighter font-black">
+            Central de <span className="text-accent">Consultas</span>
+          </h1>
+          <p className="text-white/60 text-sm md:text-base max-w-2xl mx-auto font-bold uppercase tracking-widest">
+            Soporte técnico y asesoramiento en ingeniería termoeléctrica
+          </p>
+        </div>
+      </section>
+
+      {/* Cuerpo de la página - Fondo Claro y Textos Negros */}
+      <section className="py-20 bg-slate-50">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-3 gap-12">
+            
+            {/* Columna de Información - TEXTOS EN NEGRO */}
+            <div className="lg:col-span-1 space-y-8">
+              <div>
+                <h2 className="text-2xl font-black uppercase italic tracking-tighter text-gray-900 mb-6">
+                  Datos de <span className="text-primary">Contacto</span>
+                </h2>
+                <p className="text-gray-600 mb-8 font-medium">
+                  Nuestro departamento técnico está disponible para evaluar su proyecto o necesidad de mantenimiento especializado.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                {/* Items con contraste negro */}
+                <div className="flex items-start gap-4 p-6 bg-white rounded-2xl border border-gray-200 hover:border-primary/30 transition-colors shadow-sm">
+                  <div className="w-12 h-12 bg-primary flex items-center justify-center rounded-xl text-white shrink-0">
+                    <Phone size={20} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Línea Directa</p>
+                    <p className="text-gray-900 font-bold">+54 11 2509 8629</p>
+                    <p className="text-gray-500 text-xs font-medium">Atención Comercial</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-6 bg-white rounded-2xl border border-gray-200 hover:border-primary/30 transition-colors shadow-sm">
+                  <div className="w-12 h-12 bg-primary flex items-center justify-center rounded-xl text-white shrink-0">
+                    <Mail size={20} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Email Técnico</p>
+                    <p className="text-gray-900 font-bold">servicios@thermoelectrica.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-6 bg-white rounded-2xl border border-gray-200 hover:border-primary/30 transition-colors shadow-sm">
+                  <div className="w-12 h-12 bg-primary flex items-center justify-center rounded-xl text-white shrink-0">
+                    <MapPin size={20} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">Ubicación</p>
+                    <p className="text-gray-900 font-bold">Buenos Aires, Argentina</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Horarios - Card Oscura para destacar */}
+              <div className="p-8 bg-primary rounded-3xl text-white relative overflow-hidden shadow-xl">
+                <Clock className="absolute -right-4 -bottom-4 w-32 h-32 text-white/5 rotate-12" />
+                <h3 className="text-lg font-black uppercase italic mb-4 flex items-center gap-2">
+                  <ShieldCheck className="text-accent" /> Disponibilidad
+                </h3>
+                <div className="space-y-2 text-sm font-medium text-white/70">
+                  <div className="flex justify-between border-b border-white/10 pb-2">
+                    <span>Lunes a Viernes</span>
+                    <span className="text-white">08:00 - 18:00</span>
+                  </div>
+                  <div className="flex justify-between pt-2">
+                    <span>Guardia Técnica</span>
+                    <span className="text-accent font-black underline italic">Bajo Requerimiento</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Columna Formulario */}
+            <div className="lg:col-span-2">
+              <div className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-gray-100 relative overflow-hidden">
+                <div className="relative z-10">
+                  <h3 className="text-3xl font-black uppercase italic tracking-tighter text-gray-900 mb-2">
+                    Iniciar <span className="text-primary">Requerimiento</span>
+                  </h3>
+                  <p className="text-gray-500 mb-10 font-medium">Complete los datos y un ingeniero especialista se pondrá en contacto.</p>
+
+                  <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Nombre Completo</label>
+                      <input 
+                        type="text" required
+                        className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-gray-900 font-bold"
+                        placeholder="Ej: Ing. Juan Pérez"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Empresa</label>
+                      <input 
+                        type="text" required
+                        className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-gray-900 font-bold"
+                        placeholder="Nombre de la compañía"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Correo Corporativo</label>
+                      <input 
+                        type="email" required
+                        className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-gray-900 font-bold"
+                        placeholder="email@empresa.com"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Especialidad</label>
+                      <select className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all text-gray-900 font-bold appearance-none">
+                        <option>HVAC / Climatización</option>
+                        <option>Refrigeración Industrial</option>
+                        <option>Ingeniería Eléctrica</option>
+                        <option>Mantenimiento Predictivo</option>
+                        <option>Amoníaco (NH3)</option>
+                      </select>
+                    </div>
+                    <div className="md:col-span-2 space-y-2">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Especificaciones Técnicas</label>
+                      <textarea 
+                        rows={4} required
+                        className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all text-gray-900 font-bold resize-none"
+                        placeholder="Describa los detalles técnicos de su consulta..."
+                      ></textarea>
+                    </div>
+                    
+                    <div className="md:col-span-2 pt-4">
+                      <button 
+                        disabled={status === 'sending' || status === 'success'}
+                        className={`
+                          w-full py-5 rounded-xl font-black uppercase tracking-[0.2em] text-sm flex items-center justify-center gap-3 transition-all
+                          ${status === 'success' ? 'bg-emerald-500 text-white' : 'bg-primary hover:bg-gray-900 text-white shadow-lg'}
+                        `}
+                      >
+                        {status === 'sending' ? 'Procesando...' : 
+                         status === 'success' ? (
+                           <>Mensaje Enviado <ShieldCheck size={20} /></>
+                         ) : (
+                           <>Enviar Requerimiento <Send size={18} /></>
+                         )}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* WhatsApp CTA */}
+      <section className="bg-gray-950 py-12">
+        <div className="container-custom flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex items-center gap-4 text-left">
+            <Building2 className="text-accent w-10 h-10" />
+            <div className="text-white">
+              <p className="font-black uppercase italic tracking-tighter">Relevamientos en Planta</p>
+              <p className="text-white/50 text-sm font-medium uppercase tracking-tight">Coordinación de visitas técnicas de diagnóstico.</p>
+            </div>
+          </div>
+          <Link 
+            href="https://wa.me/541125098629" 
+            target="_blank"
+            className="flex items-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-full font-black uppercase text-xs tracking-[0.15em] hover:scale-105 transition-transform"
+          >
+            <MessageSquare size={18} /> Contacto WhatsApp
+          </Link>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default ContactPage;

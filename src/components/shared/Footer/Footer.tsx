@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Linkedin, Instagram, MessageCircle, AlertCircle } from 'lucide-react';
 
 const FooterMinimal = () => {
   const serviceLinks = [
     { name: 'HVAC / Climatización', href: '/services/hvac' },
     { name: 'Refrigeración Industrial', href: '/services/industrial' },
-    { name: 'Refrigeración de Precisión', href: '/services/precision' },
+    { name: 'Data Centers / Salas Técnicas', href: '/services/precision' },
     { name: 'Amoníaco (NH₃)', href: '/services/ammonia' },
   ];
 
@@ -19,174 +19,148 @@ const FooterMinimal = () => {
     { name: 'Contacto', href: '/contact' },
   ];
 
+  const contactData = {
+    emergencyWhatsapp: "+541125098629",
+    email: "servicios@thermolectrica.com",
+    location: "Buenos Aires, Argentina"
+  };
+
   return (
-    <footer className="bg-[#0b1e63] text-white">
-      <div className="container-custom py-12">
-        {/* Logo Centrado en Mobile, Alineado a la izquierda en Desktop */}
-        <div className="flex justify-center md:justify-start mb-8 md:mb-0">
-          <div className="relative w-60 h-28 md:w-72 md:h-32">
+    <footer className="bg-primary-footer text-white border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        {/* Top Section: Logo & Emergency Line */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-16">
+          <div className="relative w-64 h-28">
             <Image
               src="/logo-termoe2.png"
               alt="Logo de Thermolectrica"
               fill
-              className="object-contain"
+              className="object-contain filter brightness-110"
               priority
             />
           </div>
-        </div>
 
-        {/* Contenido Principal del Footer */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-          {/* Descripción - Ocupa toda la fila en mobile, columna 1 en desktop */}
-          <div className="md:col-span-1 text-center md:text-left">
-            <p className="text-white/80 text-sm leading-relaxed max-w-md mx-auto md:mx-0">
-              Especialistas en sistemas térmicos, eléctricos y de climatización industrial.
-            </p>
-            
-            {/* Redes Sociales - Solo visible en mobile aquí */}
-            <div className="mt-6 md:hidden">
-              <h4 className="font-semibold mb-4 text-white text-center">Síguenos</h4>
-              <div className="flex justify-center gap-4">
-                <a 
-                  href="#" 
-                  className="flex items-center justify-center w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 group"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin size={20} className="text-white group-hover:scale-110 transition-transform" />
-                </a>
-                <a 
-                  href="#" 
-                  className="flex items-center justify-center w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 group"
-                  aria-label="Instagram"
-                >
-                  <Instagram size={20} className="text-white group-hover:scale-110 transition-transform" />
-                </a>
-                <a 
-                  href="#" 
-                  className="flex items-center justify-center w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 group"
-                  aria-label="Facebook"
-                >
-                  <Facebook size={20} className="text-white group-hover:scale-110 transition-transform" />
-                </a>
-              </div>
+          {/* Emergency Highlight Box */}
+          <div className="group bg-red-500/5 border border-red-500/20 rounded-2xl p-5 flex items-center gap-4 max-w-sm transition-all hover:bg-red-500/10">
+            <div className="bg-red-500 rounded-full p-2 animate-pulse">
+              <AlertCircle size={24} className="text-white" />
             </div>
-          </div>
-
-          {/* Enlaces Rápidos */}
-          <div className="grid grid-cols-2 gap-6 md:col-span-1">
-            <div className="text-center md:text-left">
-              <h4 className="font-semibold mb-3 text-white">Servicios</h4>
-              <ul className="space-y-2">
-                {serviceLinks.map((link) => (
-                  <li key={link.name}>
-                    <Link 
-                      href={link.href}
-                      className="text-white/70 hover:text-white text-sm transition-colors block"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className="text-center md:text-left">
-              <h4 className="font-semibold mb-3 text-white">Enlaces</h4>
-              <ul className="space-y-2">
-                {quickLinks.map((link) => (
-                  <li key={link.name}>
-                    <Link 
-                      href={link.href}
-                      className="text-white/70 hover:text-white text-sm transition-colors block"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Contacto y Redes Sociales */}
-          <div className="space-y-6 md:col-span-1">
-            {/* Contacto */}
-            <div className="text-center md:text-left">
-              <h4 className="font-semibold mb-3 text-white">Contacto</h4>
-              <div className="space-y-3">
-                <div className="flex items-center justify-center md:justify-start gap-2">
-                  <Phone className="w-4 h-4 text-[#4ade80]" />
-                  <a href="tel:+5491112345678" className="text-white/80 hover:text-white text-sm">
-                    +54 9 11 1234-5678
-                  </a>
-                </div>
-                
-                <div className="flex items-center justify-center md:justify-start gap-2">
-                  <Mail className="w-4 h-4 text-[#4ade80]" />
-                  <a href="mailto:info@thermolectrica.com" className="text-white/80 hover:text-white text-sm">
-                    info@thermolectrica.com
-                  </a>
-                </div>
-                
-                <div className="flex items-center justify-center md:justify-start gap-2">
-                  <MapPin className="w-4 h-4 text-[#4ade80]" />
-                  <span className="text-white/80 text-sm">Buenos Aires, Argentina</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Redes Sociales - Solo visible en desktop */}
-            <div className="hidden md:block space-y-4">
-              <h4 className="font-semibold text-white">Redes Sociales</h4>
-              
-              <div className="flex gap-4">
-                <a 
-                  href="#" 
-                  className="flex items-center justify-center w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 group"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin size={20} className="text-white group-hover:scale-110 transition-transform" />
-                </a>
-                <a 
-                  href="#" 
-                  className="flex items-center justify-center w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 group"
-                  aria-label="Instagram"
-                >
-                  <Instagram size={20} className="text-white group-hover:scale-110 transition-transform" />
-                </a>
-                <a 
-                  href="#" 
-                  className="flex items-center justify-center w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full transition-all duration-300 group"
-                  aria-label="Facebook"
-                >
-                  <Facebook size={20} className="text-white group-hover:scale-110 transition-transform" />
-                </a>
-              </div>
-              
-              <p className="text-white/60 text-xs">
-                Compartimos contenido técnico, casos de éxito y novedades del sector.
+            <div>
+              <p className="text-[10px] uppercase tracking-[2px] text-red-400 font-bold mb-1">
+                Línea exclusiva clientes activos
               </p>
+              <a 
+                href={`https://wa.me/${contactData.emergencyWhatsapp.replace(/[^0-9]/g, '')}`}
+                className="text-lg font-bold hover:text-red-400 transition-colors flex items-center gap-2"
+              >
+                {contactData.emergencyWhatsapp}
+                <MessageCircle size={18} className="fill-current text-green-500" />
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Pie de página */}
-        <div className="mt-12 pt-8 border-t border-white/20">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-white/60 text-sm text-center md:text-left">
-              © {new Date().getFullYear()} Thermolectrica. Todos los derechos reservados.
+        {/* Middle Section: Links & Contact */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 border-y border-white/5 py-12">
+          
+          {/* Column 1: Brand Info */}
+          <div className="space-y-6">
+            <h4 className="text-sm font-black uppercase tracking-widest text-accent">Infraestructura</h4>
+            <p className="text-white/50 text-sm leading-relaxed">
+              Especialistas en sistemas térmicos, eléctricos y de climatización industrial de alta exigencia. Enfoque en continuidad operativa y eficiencia técnica.
             </p>
-            
-            <div className="flex gap-6 text-sm">
-              <Link href="/privacy" className="text-white/60 hover:text-white transition-colors">
-                Privacidad
-              </Link>
-              <Link href="/terms" className="text-white/60 hover:text-white transition-colors">
-                Términos
-              </Link>
-              <Link href="/sitemap" className="text-white/60 hover:text-white transition-colors">
-                Mapa del Sitio
-              </Link>
+            <div className="flex gap-4">
+              {[
+                { Icon: Linkedin, href: "#", label: "LinkedIn" },
+                { Icon: Instagram, href: "#", label: "Instagram" },
+                { Icon: Facebook, href: "#", label: "Facebook" }
+              ].map((social, i) => (
+                <a 
+                  key={i}
+                  href={social.href}
+                  className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-accent hover:text-black transition-all duration-300"
+                  aria-label={social.label}
+                >
+                  <social.Icon size={18} />
+                </a>
+              ))}
             </div>
+          </div>
+
+          {/* Column 2: Services */}
+          <div>
+            <h4 className="text-sm font-black uppercase tracking-widest text-accent mb-6">Áreas Técnicas</h4>
+            <ul className="space-y-4">
+              {serviceLinks.map((link) => (
+                <li key={link.name}>
+                  <Link 
+                    href={link.href}
+                    className="text-white/50 hover:text-white hover:translate-x-1 transition-all text-sm inline-block"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Navigation */}
+          <div>
+            <h4 className="text-sm font-black uppercase tracking-widest text-accent mb-6">Navegación</h4>
+            <ul className="space-y-4">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <Link 
+                    href={link.href}
+                    className="text-white/50 hover:text-white hover:translate-x-1 transition-all text-sm inline-block"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Contact info */}
+          <div>
+            <h4 className="text-sm font-black uppercase tracking-widest text-accent mb-6">Contacto Comercial</h4>
+            <div className="space-y-4">
+              <a 
+                href={`mailto:${contactData.email}`}
+                className="flex items-center gap-3 group"
+              >
+                <div className="w-8 h-8 rounded bg-white/5 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                  <Mail size={14} className="text-accent" />
+                </div>
+                <span className="text-sm text-white/50 group-hover:text-white transition-colors">{contactData.email}</span>
+              </a>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded bg-white/5 flex items-center justify-center">
+                  <MapPin size={14} className="text-accent" />
+                </div>
+                <span className="text-sm text-white/50">{contactData.location}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Section: Legal */}
+        <div className="mt-12 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-[11px] text-white/30 uppercase tracking-widest font-medium">
+            © {new Date().getFullYear()} Thermolectrica — Ingeniería en Climatización Industrial
+          </p>
+          
+          <div className="flex gap-8">
+            {['Privacidad', 'Términos', 'Sitemap'].map((legal) => (
+              <Link 
+                key={legal}
+                href={`/${legal.toLowerCase()}`}
+                className="text-[11px] uppercase tracking-widest text-white/30 hover:text-accent transition-colors"
+              >
+                {legal}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

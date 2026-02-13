@@ -1,7 +1,7 @@
 import Hero from '@/src/components/home/Hero';
-import Services from '@/src/app/servicios/page';
 // import MissionVision from '@/src/components/shared/';
 import CTASection from '@/src/components/shared/sections/CTASection';
+import ServiciosHome from '@/src/components/shared/ServiciosHome/ServiciosHome'
 
 export const metadata = {
   title: 'Thermolectrica | Servicios Técnicos Industriales - HVAC y Refrigeración',
@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <Services />
+      <ServiciosHome />
       {/* <MissionVision /> */}
       <CTASection />
     </main>

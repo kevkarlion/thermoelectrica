@@ -50,31 +50,33 @@ const ServiciosHome = () => {
     {
       title: "Refrigeración de Precisión",
       description:
-        "Control térmico exacto para sistemas críticos como data centers y salas de servidores.",
+        "Control térmico exacto para entornos críticos como data centers, salas técnicas y laboratorios.",
       icon: <Target className="w-8 h-8" />,
       features: [
         "Mantenimiento de equipos de precisión",
+        "Calibración de sistemas de control térmico",
         "Ajuste y puesta a punto de parámetros de operación",
-        "Verificación de redundancias y alarmas",
-        "Chequeo de respaldo, redundancias y alarmas",
+        "Optimización de eficiencia energética",
       ],
       href: "/services/precision",
       image: "/refrigeracion-precision.png",
     },
+
     {
       title: "Amoníaco (NH₃)",
       description:
-        "Servicios especializados en plantas de refrigeración con amoníaco, con máximo foco en seguridad.",
+        "Servicios especializados en plantas de refrigeración con amoníaco, con foco en seguridad, eficiencia y continuidad operativa.",
       icon: <AlertTriangle className="w-8 h-8" />,
       features: [
-        "Inspecciones técnicas de plantas NH₃",
+        "Inspección y diagnóstico integral de plantas NH₃",
         "Revisión de sistemas de seguridad",
-        "Diagnostico técnico especializado en plantas NH3",
         "Soporte en paradas programadas",
+        "Optimización de operación y mantenimiento",
       ],
       href: "/services/ammonia",
       image: "/nh3.png",
     },
+
     {
       title: "Electricidad Industrial",
       description:
@@ -193,11 +195,10 @@ const ServiciosHome = () => {
                   15+ Años
                 </div>
                 <div className="text-white font-bold uppercase text-sm tracking-widest mb-2">
-                  Experiencia Técnica
+                  Experiencia Profesional
                 </div>
                 <p className="text-white/50 text-xs">
-                  Mantenimiento y operación profesional en entornos de alta
-                  exigencia.
+                  Mantenimiento y operación de sistemas industriales.
                 </p>
               </div>
 
@@ -209,7 +210,7 @@ const ServiciosHome = () => {
                   Proyectos Complejos
                 </div>
                 <p className="text-white/50 text-xs">
-                  Trayectoria comprobada en la ejecución de sistemas
+                  Trayectoria comprobada en la ejecución de servicios
                   industriales integrales.
                 </p>
               </div>

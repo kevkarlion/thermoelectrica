@@ -79,7 +79,7 @@ const Hero = () => {
               leading-relaxed
             "
             >
-              <span className="text-white font-bold">Refrigeración, climatización y electricidad</span> integradas en una sola solución de ingeniería de alta precisión.
+              <span className="text-white font-bold">Refrigeración, climatización y electricidad</span> integradas en una sola solución.
             </p>
           </div>
 

@@ -46,8 +46,8 @@ Me contacto desde su sitio web y estoy interesado en sus servicios técnicos ind
         
         {/* Tooltip */}
         <div className="absolute right-14 bg-white text-red-600 text-xs font-semibold py-1 px-3 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-          Emergencia 24/7
-          <div className="absolute top-1/2 right-[-4px] transform -translate-y-1/2 border-4 border-transparent border-l-white" />
+          Línea exclusiva clientes activos
+          <div className="absolute top-1/2 -right-1 transform -translate-y-1/2 border-4 border-transparent border-l-white" />
         </div>
       </button>
 
@@ -60,9 +60,9 @@ Me contacto desde su sitio web y estoy interesado en sus servicios técnicos ind
         <MessageCircle size={28} />
         
         {/* Tooltip */}
-        <div className="absolute right-16 bg-white text-[var(--color-text)] text-sm font-semibold py-2 px-4 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
+        <div className="absolute right-16 bg-white text-text text-sm font-semibold py-2 px-4 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
           ¡Chatee con nosotros!
-          <div className="absolute top-1/2 right-[-4px] transform -translate-y-1/2 border-8 border-transparent border-l-white" />
+          <div className="absolute top-1/2 -right-1 transform -translate-y-1/2 border-8 border-transparent border-l-white" />
         </div>
       </button>
     </>

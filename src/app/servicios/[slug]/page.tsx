@@ -28,11 +28,13 @@ const SERVICES_DATA: any = {
       "Sistemas VRV"
     ],
     images: [
-      "/gallery/hvac/01.jpg",
-      "/gallery/hvac/02.jpg",
-      "/gallery/hvac/03.jpg",
-      "/gallery/hvac/04.jpg",
-      "/gallery/hvac/05.jpg"
+      "/services/hvac/hvac.webp",
+      "/services/hvac/hvac1.webp",
+      "/services/hvac/hvac2.webp",
+      "/services/hvac/hvac3.webp",
+      "/services/hvac/hvac4.webp",
+      "/services/hvac/hvac5.webp",
+      "/services/hvac/hvac6.webp"
     ]
   },
 
@@ -53,11 +55,11 @@ const SERVICES_DATA: any = {
       "Optimización energética"
     ],
     images: [
-      "/gallery/frio/01.jpg",
-      "/gallery/frio/02.jpg",
-      "/gallery/frio/03.jpg",
-      "/gallery/frio/04.jpg",
-      "/gallery/frio/05.jpg"
+      "/services/industrial/indus.webp",
+      "/services/industrial/indus1.webp",
+      "/services/industrial/indus2.webp",
+      "/services/industrial/indus3.webp",
+      "/services/industrial/indus4.webp"
     ]
   },
 
@@ -78,11 +80,12 @@ const SERVICES_DATA: any = {
       "Respuesta inmediata"
     ],
     images: [
-      "/gallery/datacenter/01.jpg",
-      "/gallery/datacenter/02.jpg",
-      "/gallery/datacenter/03.jpg",
-      "/gallery/datacenter/04.jpg",
-      "/gallery/datacenter/05.jpg"
+      "/services/precision/pre.webp",
+      "/services/precision/pre1.webp",
+      "/services/precision/pre2.webp",
+      "/services/precision/pre3.webp",
+      "/services/precision/pre4.webp",
+      "/services/precision/pre5.webp"
     ]
   },
 

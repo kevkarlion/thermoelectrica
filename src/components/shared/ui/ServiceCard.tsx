@@ -41,7 +41,7 @@ const ServiceCard = ({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
     if (cardRef.current) observer.observe(cardRef.current);
     return () => observer.disconnect();
@@ -96,15 +96,13 @@ const ServiceCard = ({
 
             <div className="mt-auto">
               <h3 className="text-2xl font-bold mb-3">{title}</h3>
-              <p className="text-white/90 mb-6 line-clamp-2">
-                {description}
-              </p>
+              <p className="text-white/90 mb-6 line-clamp-2">{description}</p>
 
               <div className="flex items-center gap-4 text-sm text-white/80">
-                <div className="flex items-center gap-1">
+                {/* <div className="flex items-center gap-1">
                   <Clock className="w-4 h-4 text-orange-400" />
                   <span>{responseTime}</span>
-                </div>
+                </div> */}
                 <div className="flex items-center gap-1">
                   <Shield className="w-4 h-4 text-orange-400" />
                   <span>Garantía</span>
@@ -114,7 +112,8 @@ const ServiceCard = ({
               <div className="mt-4 flex items-center gap-2 text-white/70 text-sm">
                 <Info className="w-4 h-4 text-orange-400" />
                 <span>
-                  {isMobile ? "Toque" : "Hover"} para más información
+                  {isMobile ? "Toque" : "Deslizar para ver"} para más
+                  información
                 </span>
               </div>
             </div>
@@ -139,25 +138,19 @@ const ServiceCard = ({
                   </div>
                   <h3 className="text-xl font-bold text-white">{title}</h3>
                 </div>
-                <p className="text-gray-300 text-sm mb-6">
-                  {description}
-                </p>
+                <p className="text-gray-300 text-sm mb-6">{description}</p>
               </div>
 
               <div className="mb-6">
                 <h4 className="font-semibold text-white mb-3 flex items-center gap-2">
                   <Zap className="w-4 h-4 text-orange-400" />
-                  <span className="text-orange-400">
-                    Características
-                  </span>
+                  <span className="text-orange-400">Características</span>
                 </h4>
                 <div className="space-y-2">
                   {features.slice(0, 4).map((feature, index) => (
                     <div key={index} className="flex items-start gap-2">
                       <CheckCircle className="w-4 h-4 text-orange-400 mt-0.5" />
-                      <span className="text-gray-300 text-sm">
-                        {feature}
-                      </span>
+                      <span className="text-gray-300 text-sm">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -173,9 +166,7 @@ const ServiceCard = ({
                     {benefits.map((benefit, index) => (
                       <div key={index} className="flex items-start gap-2">
                         <div className="w-1.5 h-1.5 bg-orange-400 rounded-full mt-2" />
-                        <span className="text-gray-300 text-sm">
-                          {benefit}
-                        </span>
+                        <span className="text-gray-300 text-sm">{benefit}</span>
                       </div>
                     ))}
                   </div>
@@ -184,28 +175,29 @@ const ServiceCard = ({
             </div>
 
             <div className="pt-4 border-t border-white/10">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-3 bg-white/5 rounded-lg">
-                  <div className="text-xs text-gray-400 mb-1">
-                    Respuesta
-                  </div>
-                  <div className="font-semibold text-white text-sm">
-                    {responseTime}
-                  </div>
-                </div>
-                <div className="text-center p-3 bg-white/5 rounded-lg">
-                  <div className="text-xs text-gray-400 mb-1">
-                    Cobertura
-                  </div>
-                  <div className="font-semibold text-white text-sm">
-                    24/7
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div className="grid grid-cols-2 gap-4">
+    <div className="text-center p-3 bg-white/5 rounded-lg">
+      <div className="text-xs text-gray-400 mb-1">
+        Respuesta Técnica
+      </div>
+      <div className="font-semibold text-white text-sm">
+        Coordinación ágil
+      </div>
+    </div>
+
+    <div className="text-center p-3 bg-white/5 rounded-lg">
+      <div className="text-xs text-gray-400 mb-1">
+        Operatividad
+      </div>
+      <div className="font-semibold text-white text-sm">
+        Continuidad Operacional
+      </div>
+    </div>
+  </div>
+</div>
+
           </div>
         </div>
-
       </div>
     </div>
   );

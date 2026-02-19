@@ -233,10 +233,12 @@ const ServiciosHome = () => {
 
         {/* Footer de Sección: Eliminado 24/7 y Diagnósticos Gratuitos */}
         <div className="mt-16 text-center">
-          <p className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gray-50 border border-gray-200 text-gray-600 text-sm font-semibold italic">
-            <CheckCircle className="w-5 h-5 text-accent" />
-            Compromiso con la eficiencia energética y la continuidad
-            operacional.
+          <p className="inline-flex items-center justify-center gap-3 px-6 md:px-8 py-4 rounded-full bg-gray-50 border border-gray-200 text-gray-600 text-base md:text-sm font-semibold italic">
+            <CheckCircle className="w-6 h-6 md:w-5 md:h-5 text-accent shrink-0" />
+            <span className="leading-relaxed">
+              Compromiso con la eficiencia energética y la continuidad
+              operacional.
+            </span>
           </p>
         </div>
       </div>

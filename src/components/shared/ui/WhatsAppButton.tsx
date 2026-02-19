@@ -36,7 +36,7 @@ Me contacto desde su sitio web y estoy interesado en sus servicios técnicos ind
       {/* Emergency Button (small, top) */}
       <button
         onClick={handleEmergencyClick}
-        className="fixed top-24 right-6 z-50 w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl group"
+        className="fixed top-24 right-6 z-45 w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl group"
         aria-label="Emergencia técnica por WhatsApp"
       >
         <Phone size={20} />

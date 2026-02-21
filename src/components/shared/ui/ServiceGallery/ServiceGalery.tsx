@@ -42,8 +42,7 @@ export default function ServiceGallery({ images = [] }: Props) {
       const thumbWidth = activeThumb.offsetWidth;
       const containerWidth = container.offsetWidth;
 
-      const scrollTo =
-        thumbLeft - containerWidth / 2 + thumbWidth / 2;
+      const scrollTo = thumbLeft - containerWidth / 2 + thumbWidth / 2;
 
       container.scrollTo({
         left: scrollTo,
@@ -158,40 +157,52 @@ export default function ServiceGallery({ images = [] }: Props) {
       </section>
 
       {/* Lightbox (vista grande) */}
-      {lightbox && (
-        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-6">
-          <button
-            onClick={() => setLightbox(false)}
-            className="absolute top-6 right-6 text-white hover:scale-110 transition"
-          >
-            <X size={32} />
-          </button>
 
-          <div className="relative w-full max-w-7xl aspect-video">
-            <Image
-              src={images[activeIndex]}
-              alt={`Imagen grande ${activeIndex + 1}`}
-              fill
-              sizes="95vw"
-              className="object-contain"
-            />
+      {/* Lightbox (vista grande) */}
+{lightbox && (
+  <div className="fixed inset-0 z-100 bg-black/95 flex items-center justify-center p-4 md:p-10">
+    {/* Botón X - Posicionado mejor para mobile */}
+    <button
+      onClick={() => setLightbox(false)}
+      className="absolute top-4 right-4 md:top-8 md:right-8 text-white/70 hover:text-white transition-all z-110 p-2"
+      aria-label="Cerrar galería"
+    >
+      <X size={36} />
+    </button>
 
-            <button
-              onClick={prev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-black p-4 rounded-full shadow-lg transition"
-            >
-              <ChevronLeft size={30} />
-            </button>
+    {/* Contenedor de imagen: alto dinámico en mobile, aspect-ratio en desktop */}
+    <div className="relative w-full h-[70vh] md:h-auto md:max-w-7xl md:aspect-video z-50">
+      <Image
+        src={images[activeIndex]}
+        alt={`Imagen grande ${activeIndex + 1}`}
+        fill
+        priority
+        sizes="100vw"
+        className="object-contain" // Mantiene la proporción sin recortar
+      />
 
-            <button
-              onClick={next}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-black p-4 rounded-full shadow-lg transition"
-            >
-              <ChevronRight size={30} />
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Flechas - Más pequeñas en mobile para no tapar la foto */}
+      <button
+        onClick={(e) => { e.stopPropagation(); prev(); }}
+        className="absolute left-0 md:left-4 top-1/2 -translate-y-1/2 bg-white/10 md:bg-white/90 backdrop-blur-sm text-white md:text-black p-3 md:p-4 rounded-full transition-all z-60"
+      >
+        <ChevronLeft size={24} className="md:w-7.5 md:h-7.5" />
+      </button>
+
+      <button
+        onClick={(e) => { e.stopPropagation(); next(); }}
+        className="absolute right-0 md:right-4 top-1/2 -translate-y-1/2 bg-white/10 md:bg-white/90 backdrop-blur-sm text-white md:text-black p-3 md:p-4 rounded-full transition-all z-60"
+      >
+        <ChevronRight size={24} className="md:w-7.5 md:h-7.5" />
+      </button>
+      
+      {/* Contador en el modal para saber dónde estamos */}
+      <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-white/50 text-sm font-mono">
+        {activeIndex + 1} / {total}
+      </div>
+    </div>
+  </div>
+)}
     </>
   );
 }

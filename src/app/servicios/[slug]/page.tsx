@@ -55,11 +55,17 @@ const SERVICES_DATA: any = {
       "Optimización energética"
     ],
     images: [
-      "/services/industrial/indus.webp",
-      "/services/industrial/indus1.webp",
-      "/services/industrial/indus2.webp",
-      "/services/industrial/indus3.webp",
-      "/services/industrial/indus4.webp"
+      "/services/industrial/ind.webp",
+      "/services/industrial/ind1.webp",
+      "/services/industrial/ind2.webp",
+      "/services/industrial/ind3.webp",
+      "/services/industrial/ind4.webp",
+      "/services/industrial/ind5.webp",
+      "/services/industrial/ind6.webp",
+      "/services/industrial/ind7.webp",
+      "/services/industrial/ind8.webp",
+      "/services/industrial/ind9.webp",
+      "/services/industrial/ind10.webp",
     ]
   },
 
@@ -106,14 +112,16 @@ const SERVICES_DATA: any = {
       "Auditorías IIAR"
     ],
     images: [
-      "/services/amoniaco/amoniaco.webp",
-      "/services/amoniaco/amoniaco1.webp",
-      "/services/amoniaco/amoniaco2.webp",
-      "/services/amoniaco/amoniaco3.webp",
-      "/services/amoniaco/amoniaco4.webp",
-      "/services/amoniaco/amoniaco5.webp",
-      "/services/amoniaco/amoniaco6.webp",
-      "/services/amoniaco/amoniaco7.webp"
+      "/services/amoniaco/amo.webp",
+      "/services/amoniaco/amo1.webp",
+      "/services/amoniaco/amo2.webp",
+      "/services/amoniaco/amo3.webp",
+      "/services/amoniaco/amo4.webp",
+      "/services/amoniaco/amo5.webp",
+      "/services/amoniaco/amo6.webp",
+      "/services/amoniaco/amo7.webp",
+      "/services/amoniaco/amo8.webp",
+      "/services/amoniaco/amo9.webp",
     ]
   },
 

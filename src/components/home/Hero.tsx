@@ -117,11 +117,12 @@ const Hero = () => {
               </div>
             </div>
 
+            {/* Cambio realizado aquí: Opción A */}
             <div className="flex items-center gap-4 p-5 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
               <Zap className="w-6 h-6 text-accent" />
               <div>
-                <div className="font-bold text-lg leading-none">24/7</div>
-                <div className="text-xs text-white/60 uppercase tracking-tighter mt-1">Soporte de Emergencia</div>
+                <div className="font-bold text-lg leading-none">Respuesta Rápida</div>
+                <div className="text-xs text-white/60 uppercase tracking-tighter mt-1">Soporte Técnico</div>
               </div>
             </div>
 

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { CheckCircle, Info, Clock, Shield, Zap } from "lucide-react";
+import { CheckCircle, Info, Shield, Zap } from "lucide-react";
 
 interface ServiceCardProps {
   title: string;
@@ -22,7 +22,6 @@ const ServiceCard = ({
   features,
   image,
   benefits = [],
-  responseTime = "24-48 horas",
 }: ServiceCardProps) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -175,27 +174,24 @@ const ServiceCard = ({
             </div>
 
             <div className="pt-4 border-t border-white/10">
-  <div className="grid grid-cols-2 gap-4">
-    <div className="text-center p-3 bg-white/5 rounded-lg">
-      <div className="text-xs text-gray-400 mb-1">
-        Respuesta Técnica
-      </div>
-      <div className="font-semibold text-white text-sm">
-        Coordinación ágil
-      </div>
-    </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="text-center p-3 bg-white/5 rounded-lg">
+                  <div className="text-xs text-gray-400 mb-1">
+                    Respuesta Técnica
+                  </div>
+                  <div className="font-semibold text-white text-sm">
+                    Coordinación ágil
+                  </div>
+                </div>
 
-    <div className="text-center p-3 bg-white/5 rounded-lg">
-      <div className="text-xs text-gray-400 mb-1">
-        Operatividad
-      </div>
-      <div className="font-semibold text-white text-sm">
-        Continuidad Operacional
-      </div>
-    </div>
-  </div>
-</div>
-
+                <div className="text-center p-3 bg-white/5 rounded-lg">
+                  <div className="text-xs text-gray-400 mb-1">Operatividad</div>
+                  <div className="font-semibold text-white text-sm">
+                    Continuidad Operacional
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

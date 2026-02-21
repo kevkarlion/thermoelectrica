@@ -1,55 +1,36 @@
-'use client';
+"use client";
 
-import { MessageCircle, Phone } from 'lucide-react';
+import { MessageCircle } from "lucide-react";
 
 const WhatsAppButtonNoEffects = () => {
   // No usamos useState inicial que dependa de efectos
   // En lugar de eso, manejamos todo con handlers directos
 
   const handleWhatsAppClick = () => {
-    const phoneNumber = '+5491112345678';
-    const message = `¡Hola Thermolectrica! 👋 
+    const phoneNumber = "+5491125098629";
+    const message = `¡Hola Thermolectrica!
 
 Me contacto desde su sitio web y estoy interesado en sus servicios técnicos industriales.
-
-📋 Servicio de interés: 
-🏢 Empresa: 
-📍 Ubicación: 
-📝 Descripción del requerimiento:
 
 ¿Podrían contactarme para coordinar una evaluación técnica?`;
 
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+    window.open(url, "_blank");
   };
 
-  const handleEmergencyClick = () => {
-    const phoneNumber = '+5491112345678';
-    const message = '🚨 *EMERGENCIA TÉCNICA* 🚨\n\nNecesito asistencia técnica de URGENCIA. Por favor, contáctenme inmediatamente.';
+  // const handleEmergencyClick = () => {
+  //   const phoneNumber = "+5491112345678";
+  //   const message =
+  //     "🚨 *EMERGENCIA TÉCNICA* 🚨\n\nNecesito asistencia técnica de URGENCIA. Por favor, contáctenme inmediatamente.";
 
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  };
+  //   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  //   window.open(url, "_blank");
+  // };
 
   return (
     <>
       {/* Emergency Button (small, top) */}
-      <button
-        onClick={handleEmergencyClick}
-        className="fixed top-24 right-6 z-45 w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-xl group"
-        aria-label="Emergencia técnica por WhatsApp"
-      >
-        <Phone size={20} />
-        <div className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full flex items-center justify-center">
-          <span className="text-red-500 text-xs font-bold">!</span>
-        </div>
-        
-        {/* Tooltip */}
-        <div className="absolute right-14 bg-white text-red-600 text-xs font-semibold py-1 px-3 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
-          Línea exclusiva clientes activos
-          <div className="absolute top-1/2 -right-1 transform -translate-y-1/2 border-4 border-transparent border-l-white" />
-        </div>
-      </button>
+     
 
       {/* Main WhatsApp Button */}
       <button
@@ -58,7 +39,7 @@ Me contacto desde su sitio web y estoy interesado en sus servicios técnicos ind
         aria-label="Contactar por WhatsApp"
       >
         <MessageCircle size={28} />
-        
+
         {/* Tooltip */}
         <div className="absolute right-16 bg-white text-text text-sm font-semibold py-2 px-4 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
           ¡Chatee con nosotros!

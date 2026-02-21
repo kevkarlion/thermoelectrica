@@ -3,109 +3,80 @@
 import Link from "next/link";
 import Image from "next/image";
 import {
-  Phone,
   Mail,
   MapPin,
   Facebook,
   Linkedin,
   Instagram,
   MessageCircle,
-  AlertCircle,
 } from "lucide-react";
 
 const FooterMinimal = () => {
   const serviceLinks = [
-    { name: "HVAC / Climatización", href: "/services/hvac" },
-    { name: "Refrigeración Industrial", href: "/services/industrial" },
-    { name: "Data Centers / Salas Técnicas", href: "/services/precision" },
-    { name: "Amoníaco (NH₃)", href: "/services/ammonia" },
+    { name: "HVAC / Climatización", href: "/servicios/hvac-climatizacion-industrial" },
+    { name: "Refrigeración Industrial", href: "/servicios/refrigeracion-industrial" },
+    { name: "Data Centers / Salas Técnicas", href: "/servicios/refrigeracion-precision-data-centers" },
+    { name: "Amoníaco (NH₃)", href: "/servicios/sistemas-refrigeracion-amoniaco-nh3" },
   ];
 
   const quickLinks = [
     { name: "Inicio", href: "/" },
-    { name: "Servicios", href: "/services" },
-    { name: "Nosotros", href: "/about" },
-    { name: "Contacto", href: "/contact" },
+    { name: "Servicios", href: "/servicios" },
+    { name: "Contacto", href: "/contacto" },
   ];
 
   const contactData = {
-    emergencyWhatsapp: "+541125098629",
+    whatsapp: "+541125098629",
     email: "servicios@thermolectrica.com",
-    location: "Buenos Aires, Argentina",
+    location: "Santa Fe, Argentina",
   };
 
   return (
     <footer className="bg-primary-footer text-white border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {/* Top Section: Logo & Emergency Line */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-16">
-          <div className="relative w-64 h-28">
-            <Image
-              src="/logo-termoe2.png"
-              alt="Logo de Thermolectrica"
-              fill
-              className="object-contain filter brightness-110"
-              priority
-            />
-          </div>
-
-          {/* Emergency Highlight Box */}
-          <div className="group bg-red-500/5 border border-red-500/20 rounded-2xl p-5 flex items-center gap-4 max-w-sm transition-all hover:bg-red-500/10">
-            <div className="bg-red-500 rounded-full p-2 animate-pulse">
-              <AlertCircle size={24} className="text-white" />
+        
+        {/* Main Grid Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16">
+          
+          {/* Column 1: Brand & Bio - Centrado en mobile, izquierda en desktop */}
+          <div className="lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-left space-y-8">
+            <div className="relative w-56 h-20 mx-auto lg:mx-0">
+              <Image
+                src="/logo-termoe2.png"
+                alt="Logo de Thermolectrica"
+                fill
+                className="object-contain filter brightness-110"
+                priority
+              />
             </div>
-
-            <div>
-              <p className="text-[10px] uppercase tracking-[2px] text-red-400 font-bold mb-1">
-                Línea exclusiva clientes activos
-              </p>
-
-              <a
-                href={`https://wa.me/${contactData.emergencyWhatsapp.replace(/[^0-9]/g, "")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-green-500 hover:opacity-70 transition"
-                title="Soporte por WhatsApp"
-              >
-                <MessageCircle size={20} />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Middle Section: Links & Contact */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 border-y border-white/5 py-12">
-          {/* Column 1: Brand Info */}
-          <div className="space-y-6">
-            <h4 className="text-sm font-black uppercase tracking-widest text-accent">
-              Infraestructura
-            </h4>
-            <p className="text-white/50 text-sm leading-relaxed">
+            <p className="text-white/50 text-sm leading-relaxed max-w-sm">
               Especialistas en sistemas térmicos, eléctricos y de climatización
               industrial de alta exigencia. Enfoque en continuidad operativa y
               eficiencia técnica.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               {[
-                { Icon: Linkedin, href: "#", label: "LinkedIn" },
-                { Icon: Instagram, href: "#", label: "Instagram" },
-                { Icon: Facebook, href: "#", label: "Facebook" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/in/thermolectrica-hacemos-que-funcione-b9b0303b0", label: "LinkedIn" },
+                { Icon: Instagram, href: "https://www.instagram.com/thermolectrica/", label: "Instagram" },
+                { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61552231003758", label: "Facebook" },
               ].map((social, i) => (
                 <a
                   key={i}
                   href={social.href}
-                  className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center hover:bg-accent hover:text-black transition-all duration-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded bg-white/5 flex items-center justify-center hover:bg-accent hover:text-black transition-all duration-300"
                   aria-label={social.label}
                 >
-                  <social.Icon size={18} />
+                  <social.Icon size={16} />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Column 2: Services */}
-          <div>
-            <h4 className="text-sm font-black uppercase tracking-widest text-accent mb-6">
+          {/* Column 2: Areas Técnicas */}
+          <div className="lg:col-span-3 lg:ml-auto text-center lg:text-left">
+            <h4 className="text-[11px] font-black uppercase tracking-[3px] text-accent mb-8">
               Áreas Técnicas
             </h4>
             <ul className="space-y-4">
@@ -122,9 +93,9 @@ const FooterMinimal = () => {
             </ul>
           </div>
 
-          {/* Column 3: Navigation */}
-          <div>
-            <h4 className="text-sm font-black uppercase tracking-widest text-accent mb-6">
+          {/* Column 3: Navegación */}
+          <div className="lg:col-span-2 text-center lg:text-left">
+            <h4 className="text-[11px] font-black uppercase tracking-[3px] text-accent mb-8">
               Navegación
             </h4>
             <ul className="space-y-4">
@@ -141,15 +112,17 @@ const FooterMinimal = () => {
             </ul>
           </div>
 
-          {/* Column 4: Contact info */}
-          <div>
-            <h4 className="text-sm font-black uppercase tracking-widest text-accent mb-6">
-              Contacto Comercial
+          {/* Column 4: Contacto */}
+          <div className="lg:col-span-3 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <h4 className="text-[11px] font-black uppercase tracking-[3px] text-accent mb-8">
+              Contacto Directo
             </h4>
-            <div className="space-y-4">
+            <div className="space-y-5 flex flex-col items-center lg:items-start">
               <a
                 href={`mailto:${contactData.email}`}
                 className="flex items-center gap-3 group"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <div className="w-8 h-8 rounded bg-white/5 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <Mail size={14} className="text-accent" />
@@ -166,28 +139,25 @@ const FooterMinimal = () => {
                   {contactData.location}
                 </span>
               </div>
+              <a
+                href={`https://wa.me/${contactData.whatsapp.replace(/[^0-9]/g, "")}`}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-lg text-green-500 hover:bg-green-500 hover:text-white transition-all duration-300 text-sm font-bold"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MessageCircle size={16} />
+                WhatsApp Consultas
+              </a>
             </div>
           </div>
         </div>
 
         {/* Bottom Section: Legal */}
-        <div className="mt-12 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[11px] text-white/30 uppercase tracking-widest font-medium">
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-[10px] text-white/30 uppercase tracking-[2px] font-medium text-center md:text-left">
             © {new Date().getFullYear()} Thermolectrica — Ingeniería en
             Climatización Industrial
           </p>
-
-          <div className="flex gap-8">
-            {["Privacidad", "Términos", "Sitemap"].map((legal) => (
-              <Link
-                key={legal}
-                href={`/${legal.toLowerCase()}`}
-                className="text-[11px] uppercase tracking-widest text-white/30 hover:text-accent transition-colors"
-              >
-                {legal}
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

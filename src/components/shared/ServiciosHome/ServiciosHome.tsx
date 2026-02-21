@@ -15,6 +15,7 @@ import {
   ListChecks,
   ClipboardCheck,
   Shield,
+  MessageSquare,
 } from "lucide-react";
 
 const ServiciosHome = () => {
@@ -171,20 +172,24 @@ const ServiciosHome = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/contact"
-                  className="bg-accent hover:bg-accent-dark text-black font-black uppercase tracking-widest px-10 py-5 rounded-xl transition-all hover:scale-105 flex items-center justify-center gap-3"
+                {/* CTA WhatsApp - Acción Inmediata */}
+                <a
+                  href="https://wa.me/541125098629?text=Hola!%20Me%20gustaría%20solicitar%20una%20cotización."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-accent hover:bg-accent-dark text-black font-black uppercase tracking-widest px-10 py-5 rounded-xl transition-all hover:scale-105 flex items-center justify-center gap-3 shadow-lg shadow-accent/20"
                 >
                   Solicitar Cotización
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
+                  <MessageSquare className="w-5 h-5 text-black" />
+                </a>
 
+                {/* CTA Navegación - Exploración */}
                 <Link
-                  href="/services/all"
+                  href="/servicios"
                   className="bg-white/5 backdrop-blur-md text-white border border-white/20 font-bold uppercase tracking-widest px-10 py-5 rounded-xl transition-all hover:bg-white/10 flex items-center justify-center gap-3"
                 >
                   Explorar Catálogo
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-5 h-5 opacity-50" />
                 </Link>
               </div>
             </div>

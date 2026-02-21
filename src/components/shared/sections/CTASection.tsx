@@ -34,9 +34,9 @@ const CTASection = () => {
 
   // Datos de contacto configurables
   const contactInfo = {
-    phone: "+5491112345678", // Reemplaza con tu número real (formato internacional sin espacios)
+    phone: "+5491125098629", // Reemplaza con tu número real (formato internacional sin espacios)
     whatsappMsg: "Hola Thermolectrica, me contacto desde la web para solicitar una evaluación técnica.",
-    email: "info@thermolectrica.com"
+    email: "servicios@thermolectrica.com"
   };
 
   return (

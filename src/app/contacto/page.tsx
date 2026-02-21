@@ -11,16 +11,39 @@ import {
   MessageSquare,
   Building2,
   ShieldCheck,
+  Linkedin,
+  Instagram,
+  Facebook,
 } from "lucide-react";
 
 const ContactPage = () => {
-
-
- const contactData = {
+  const contactData = {
     emergencyWhatsapp: "+541125098629",
     email: "servicios@thermolectrica.com",
-    location: "Buenos Aires, Argentina",
-  };  const [status, setStatus] = useState("");
+    location: "Santa Fe, Argentina",
+    socials: [
+      { 
+        name: "LinkedIn", 
+        icon: Linkedin, 
+        href: "https://www.linkedin.com/in/thermolectrica-hacemos-que-funcione-b9b0303b0",
+        label: "Perfil Profesional"
+      },
+      { 
+        name: "Instagram", 
+        icon: Instagram, 
+        href: "https://www.instagram.com/thermolectrica/",
+        label: "@thermolectrica"
+      },
+      { 
+        name: "Facebook", 
+        icon: Facebook, 
+        href: "https://www.facebook.com/profile.php?id=61552231003758",
+        label: "Thermolectrica"
+      },
+    ]
+  };
+
+  const [status, setStatus] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,7 +53,7 @@ const ContactPage = () => {
 
   return (
     <main className="min-h-screen bg-slate-50">
-      {/* Header Sección - Fondo Azul Oscuro */}
+      {/* Header Sección */}
       <section className="bg-primary py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-0 w-full h-full bg-[url('/grid.svg')] bg-center" />
@@ -45,11 +68,12 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Cuerpo de la página - Fondo Claro y Textos Negros */}
+      {/* Cuerpo de la página */}
       <section className="py-20 bg-slate-50">
         <div className="container-custom">
           <div className="grid lg:grid-cols-3 gap-12">
-            {/* Columna de Información - TEXTOS EN NEGRO */}
+            
+            {/* Columna de Información */}
             <div className="lg:col-span-1 space-y-8">
               <div>
                 <h2 className="text-2xl font-black uppercase italic tracking-tighter text-gray-900 mb-6">
@@ -61,75 +85,69 @@ const ContactPage = () => {
                 </p>
               </div>
 
-              <div className="space-y-6">
-  {/* Teléfono */}
-  <a 
-    href={`https://wa.me/${contactData.emergencyWhatsapp.replace(/[^0-9]/g, '')}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-start gap-4 p-6 bg-white rounded-2xl border border-gray-200 hover:border-primary/30 transition-colors shadow-sm"
-  >
-    <div className="w-12 h-12 bg-primary flex items-center justify-center rounded-xl text-white shrink-0">
-      <Phone size={20} />
-    </div>
-    <div>
-      <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">
-        Línea Directa
-      </p>
-      <p className="text-gray-900 font-bold">Contactar por WhatsApp</p>
-      <p className="text-gray-500 text-xs font-medium">
-        Atención Comercial
-      </p>
-    </div>
-  </a>
+              <div className="space-y-4">
+                {/* Teléfono */}
+                <a
+                  href={`https://wa.me/${contactData.emergencyWhatsapp.replace(/[^0-9]/g, "")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-200 hover:border-primary/30 transition-colors shadow-sm group"
+                >
+                  <div className="w-10 h-10 bg-primary flex items-center justify-center rounded-xl text-white shrink-0 group-hover:scale-110 transition-transform">
+                    <Phone size={18} />
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-0.5">Línea Directa</p>
+                    <p className="text-gray-900 font-bold text-sm">WhatsApp Comercial</p>
+                  </div>
+                </a>
 
-  {/* Email */}
-  <a 
-    href="mailto:servicios@thermoelectrica.com"
-    className="flex items-start gap-4 p-6 bg-white rounded-2xl border border-gray-200 hover:border-primary/30 transition-colors shadow-sm"
-  >
-    <div className="w-12 h-12 bg-primary flex items-center justify-center rounded-xl text-white shrink-0">
-      <Mail size={20} />
-    </div>
-    <div>
-      <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">
-        Email Técnico
-      </p>
-      <p className="text-gray-900 font-bold">Enviar correo</p>
-      <p className="text-gray-500 text-xs font-medium">
-        Soporte y consultas
-      </p>
-    </div>
-  </a>
+                {/* Email */}
+                <a
+                  href={`mailto:${contactData.email}`}
+                  className="flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-200 hover:border-primary/30 transition-colors shadow-sm group"
+                >
+                  <div className="w-10 h-10 bg-primary flex items-center justify-center rounded-xl text-white shrink-0 group-hover:scale-110 transition-transform">
+                    <Mail size={18} />
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-0.5">Email Técnico</p>
+                    <p className="text-gray-900 font-bold text-sm">{contactData.email}</p>
+                  </div>
+                </a>
+              </div>
 
-  {/* Ubicación */}
-  <a 
-    href="https://www.google.com/maps/search/?api=1&query=Santa+Fe+Argentina"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="flex items-start gap-4 p-6 bg-white rounded-2xl border border-gray-200 hover:border-primary/30 transition-colors shadow-sm"
-  >
-    <div className="w-12 h-12 bg-primary flex items-center justify-center rounded-xl text-white shrink-0">
-      <MapPin size={20} />
-    </div>
-    <div>
-      <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-1">
-        Ubicación
-      </p>
-      <p className="text-gray-900 font-bold">Santa Fe, Argentina</p>
-      <p className="text-gray-500 text-xs font-medium">
-        Ver en Google Maps
-      </p>
-    </div>
-  </a>
-</div>
+              {/* Redes Sociales - Nueva Sección Integrada */}
+              <div className="space-y-4">
+                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-400 ml-1">
+                  Canales Digitales
+                </h3>
+                <div className="grid grid-cols-1 gap-3">
+                  {contactData.socials.map((social) => (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 bg-white rounded-xl border border-gray-100 hover:bg-gray-50 transition-all group shadow-sm"
+                    >
+                      <div className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-100 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <social.icon size={16} />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-xs font-black uppercase tracking-tight text-gray-900">{social.name}</span>
+                        <span className="text-[10px] text-gray-500 font-medium">{social.label}</span>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
 
-
-              {/* Horarios - Card Oscura para destacar */}
+              {/* Horarios */}
               <div className="p-8 bg-primary rounded-3xl text-white relative overflow-hidden shadow-xl">
                 <Clock className="absolute -right-4 -bottom-4 w-32 h-32 text-white/5 rotate-12" />
                 <h3 className="text-lg font-black uppercase italic mb-4 flex items-center gap-2">
-                  <ShieldCheck className="text-accent" /> Disponibilidad
+                  <ShieldCheck className="text-accent" size={20} /> Disponibilidad
                 </h3>
                 <div className="space-y-2 text-sm font-medium text-white/70">
                   <div className="flex justify-between border-b border-white/10 pb-2">
@@ -158,14 +176,9 @@ const ContactPage = () => {
                     contacto.
                   </p>
 
-                  <form
-                    onSubmit={handleSubmit}
-                    className="grid md:grid-cols-2 gap-6"
-                  >
+                  <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">
-                        Nombre Completo
-                      </label>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Nombre Completo</label>
                       <input
                         type="text"
                         required
@@ -174,9 +187,7 @@ const ContactPage = () => {
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">
-                        Empresa
-                      </label>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Empresa</label>
                       <input
                         type="text"
                         required
@@ -185,9 +196,7 @@ const ContactPage = () => {
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">
-                        Correo Corporativo
-                      </label>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Correo Corporativo</label>
                       <input
                         type="email"
                         required
@@ -196,9 +205,7 @@ const ContactPage = () => {
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">
-                        Especialidad
-                      </label>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Especialidad</label>
                       <select className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all text-gray-900 font-bold appearance-none">
                         <option>HVAC / Climatización</option>
                         <option>Refrigeración Industrial</option>
@@ -208,9 +215,7 @@ const ContactPage = () => {
                       </select>
                     </div>
                     <div className="md:col-span-2 space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">
-                        Especificaciones Técnicas
-                      </label>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Especificaciones Técnicas</label>
                       <textarea
                         rows={4}
                         required
@@ -227,16 +232,10 @@ const ContactPage = () => {
                           ${status === "success" ? "bg-emerald-500 text-white" : "bg-primary hover:bg-gray-900 text-white shadow-lg"}
                         `}
                       >
-                        {status === "sending" ? (
-                          "Procesando..."
-                        ) : status === "success" ? (
-                          <>
-                            Mensaje Enviado <ShieldCheck size={20} />
-                          </>
+                        {status === "sending" ? "Procesando..." : status === "success" ? (
+                          <>Mensaje Enviado <ShieldCheck size={20} /></>
                         ) : (
-                          <>
-                            Enviar Requerimiento <Send size={18} />
-                          </>
+                          <>Enviar Requerimiento <Send size={18} /></>
                         )}
                       </button>
                     </div>
@@ -254,16 +253,12 @@ const ContactPage = () => {
           <div className="flex items-center gap-4 text-left">
             <Building2 className="text-accent w-10 h-10" />
             <div className="text-white">
-              <p className="font-black uppercase italic tracking-tighter">
-                Relevamientos en Planta
-              </p>
-              <p className="text-white/50 text-sm font-medium uppercase tracking-tight">
-                Coordinación de visitas técnicas de diagnóstico.
-              </p>
+              <p className="font-black uppercase italic tracking-tighter">Relevamientos en Planta</p>
+              <p className="text-white/50 text-sm font-medium uppercase tracking-tight">Coordinación de visitas técnicas de diagnóstico.</p>
             </div>
           </div>
           <Link
-            href="https://wa.me/541125098629"
+            href={`https://wa.me/${contactData.emergencyWhatsapp.replace(/[^0-9]/g, "")}`}
             target="_blank"
             className="flex items-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-full font-black uppercase text-xs tracking-[0.15em] hover:scale-105 transition-transform"
           >

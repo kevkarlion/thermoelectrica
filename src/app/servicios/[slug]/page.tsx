@@ -129,8 +129,8 @@ const SERVICES_DATA: any = {
     ]
   },
 
-  "ingenieria-electrica-industrial": {
-    title: "Ingeniería Eléctrica",
+  "electricidad-industrial": {
+    title: "Electricidad Industrial",
     subtitle: "Potencia y Control de Infraestructura",
     description: "Sistemas eléctricos industriales diseñados para alta disponibilidad.",
     specs: [
@@ -141,9 +141,8 @@ const SERVICES_DATA: any = {
     ],
     features: [
       "Tableros de transferencia",
-      "Análisis de armónicos",
       "Canalización robusta",
-      "Automatización"
+      "Automatismos"
     ],
     images: [
       "/gallery/electrica/01.jpg",
@@ -166,7 +165,7 @@ const SERVICES_DATA: any = {
     ],
     features: [
       "Análisis termográfico",
-      "Medición vibracional",
+      "Megado de bobinados en motores",
       "Análisis de aceite",
       "Informes técnicos"
     ],

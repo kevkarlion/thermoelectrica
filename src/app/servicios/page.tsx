@@ -49,8 +49,8 @@ const ServicesPage = () => {
       color: "border-emerald-600"
     },
     {
-      title: "Ingeniería Eléctrica",
-      slug: "ingenieria-electrica-industrial",
+      title: "Electricidad Industrial",
+      slug: "electricidad-industrial",
       icon: <Zap className="w-8 h-8" />,
       description: "Infraestructura eléctrica robusta para soportar sistemas industriales de alta potencia.",
       features: ["Tableros de Fuerza", "PLC / Scada", "Grupos Electrógenos", "Calidad de Energía"],

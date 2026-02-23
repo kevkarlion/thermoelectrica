@@ -1,7 +1,7 @@
 "use client";
 
+import React, { useState } from "react";
 import {
-  Phone,
   Mail,
   Calendar,
   CheckCircle,
@@ -11,7 +11,8 @@ import {
   Building,
   Server,
   Activity,
-  MessageCircle, // Icono para WhatsApp
+  MessageCircle,
+  ShieldCheck, // Importado para el estado de éxito
 } from "lucide-react";
 
 const CTASection = () => {
@@ -32,11 +33,50 @@ const CTASection = () => {
     { title: "Comercial", desc: "Grandes superficies y oficinas", Icon: ShoppingBag },
   ];
 
-  // Datos de contacto configurables
   const contactInfo = {
-    phone: "+5491125098629", // Reemplaza con tu número real (formato internacional sin espacios)
+    phone: "+5491125098629",
     whatsappMsg: "Hola Thermolectrica, me contacto desde la web para solicitar una evaluación técnica.",
     email: "servicios@thermolectrica.com"
+  };
+
+  // --- LÓGICA DE ENVÍO ---
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("sending");
+
+    const formData = new FormData(e.currentTarget);
+    
+    const datos = {
+      nombre: formData.get("nombre"),
+      email: formData.get("email"),
+      mensaje: `
+        Empresa: ${formData.get("empresa") || "No especificada"}
+        Teléfono: ${formData.get("telefono")}
+        Servicio de interés: ${formData.get("servicio")}
+        Detalle técnico/Criticidad: ${formData.get("mensaje")}
+      `,
+    };
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        (e.target as HTMLFormElement).reset();
+        setTimeout(() => setStatus("idle"), 5000); // Resetear estado tras 5 seg
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+    }
   };
 
   return (
@@ -59,13 +99,10 @@ const CTASection = () => {
         </div>
 
         <div className="lg:grid lg:grid-cols-2 lg:gap-12">
-          {/* Left Column: Benefits and Contact Options */}
+          {/* Left Column */}
           <div className="space-y-8 mb-12 lg:mb-0">
             <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200/70">
-              <h3 className="text-2xl font-bold mb-6">
-                ¿Por qué elegir Thermolectrica?
-              </h3>
-
+              <h3 className="text-2xl font-bold mb-6">¿Por qué elegir Thermolectrica?</h3>
               <div className="space-y-5">
                 {benefits.map((benefit, index) => (
                   <div
@@ -76,19 +113,14 @@ const CTASection = () => {
                     <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 bg-gray-100 border border-gray-200">
                       <CheckCircle className="w-5 h-5 text-gray-700" />
                     </div>
-                    <span className="text-gray-700 leading-relaxed font-medium">
-                      {benefit}
-                    </span>
+                    <span className="text-gray-700 leading-relaxed font-medium">{benefit}</span>
                   </div>
                 ))}
               </div>
 
               <div className="mt-10 pt-8 border-t border-gray-200/70">
-                <h4 className="font-semibold mb-4 text-gray-900">
-                  Canales de atención inmediata
-                </h4>
+                <h4 className="font-semibold mb-4 text-gray-900">Canales de atención inmediata</h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* WhatsApp Botón - Actualizado */}
                   <a
                     href={`https://wa.me/${contactInfo.phone.replace('+', '')}?text=${encodeURIComponent(contactInfo.whatsappMsg)}`}
                     target="_blank"
@@ -98,8 +130,6 @@ const CTASection = () => {
                     <MessageCircle className="w-5 h-5 fill-current" />
                     <span>WhatsApp</span>
                   </a>
-                  
-                  {/* Email Botón - Clickeable */}
                   <a
                     href={`mailto:${contactInfo.email}`}
                     className="flex items-center justify-center gap-2 bg-white border-2 border-gray-300 text-gray-800 hover:border-accent hover:text-accent font-semibold py-3 px-4 rounded-lg transition-all hover:scale-105"
@@ -111,20 +141,14 @@ const CTASection = () => {
               </div>
             </div>
 
-            {/* Quick Stats */}
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-white rounded-xl p-6 text-center border border-gray-200 shadow-sm">
                 <div className="inline-flex mb-2"><Activity className="w-6 h-6 text-accent" /></div>
-                <div className="text-sm font-bold text-gray-900 uppercase tracking-tighter">
-                  Continuidad Operativa
-                </div>
+                <div className="text-sm font-bold text-gray-900 uppercase tracking-tighter">Continuidad Operativa</div>
                 <div className="text-xs text-gray-500 mt-1 italic">Enfoque principal</div>
               </div>
-
               <div className="bg-white rounded-xl p-6 text-center border border-gray-200 shadow-sm flex flex-col justify-center">
-                <div className="text-xl font-bold text-gray-900 leading-tight">
-                  Respuesta según criticidad
-                </div>
+                <div className="text-xl font-bold text-gray-900 leading-tight">Respuesta según criticidad</div>
                 <div className="text-xs text-gray-500 mt-1 uppercase font-semibold">Tiempos de respuesta</div>
               </div>
             </div>
@@ -138,24 +162,22 @@ const CTASection = () => {
                   <Calendar className="w-6 h-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white uppercase italic">
-                    Agende una visita técnica
-                  </h3>
-                  <p className="text-white/60 text-sm">
-                    Complete los datos para la asignación de un especialista.
-                  </p>
+                  <h3 className="text-2xl font-bold text-white uppercase italic">Agende una visita técnica</h3>
+                  <p className="text-white/60 text-sm">Complete los datos para la asignación de un especialista.</p>
                 </div>
               </div>
 
-              <form className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
+                    name="nombre"
                     type="text"
                     required
                     placeholder="Nombre completo"
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-1 focus:ring-accent outline-none"
                   />
                   <input
+                    name="empresa"
                     type="text"
                     placeholder="Empresa"
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-1 focus:ring-accent outline-none"
@@ -163,12 +185,14 @@ const CTASection = () => {
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <input
+                    name="email"
                     type="email"
                     required
-                    placeholder="Email corporativo"
+                    placeholder="Email"
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-white/40 focus:ring-1 focus:ring-accent outline-none"
                   />
                   <input
+                    name="telefono"
                     type="tel"
                     required
                     placeholder="Teléfono de contacto"
@@ -176,6 +200,7 @@ const CTASection = () => {
                   />
                 </div>
                 <select
+                  name="servicio"
                   required
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:ring-1 focus:ring-accent outline-none appearance-none"
                 >
@@ -187,6 +212,7 @@ const CTASection = () => {
                   <option value="diagnostico" className="bg-gray-900">Diagnóstico Técnico en Sitio</option>
                 </select>
                 <textarea
+                  name="mensaje"
                   rows={4}
                   required
                   placeholder="Describa su necesidad técnica o criticidad del equipo..."
@@ -195,10 +221,23 @@ const CTASection = () => {
                 
                 <button
                   type="submit"
-                  className="w-full bg-accent hover:bg-accent-dark text-black font-black uppercase tracking-widest py-4 rounded-lg transition-all active:scale-[0.98] shadow-lg"
+                  disabled={status === "sending" || status === "success"}
+                  className={`w-full font-black uppercase tracking-widest py-4 rounded-lg transition-all active:scale-[0.98] shadow-lg flex items-center justify-center gap-2
+                    ${status === "success" ? "bg-emerald-500 text-white" : "bg-accent hover:bg-accent-dark text-black"}
+                    ${status === "error" ? "bg-red-600 text-white" : ""}
+                  `}
                 >
-                  Solicitar evaluación técnica
+                  {status === "sending" ? "Enviando..." : 
+                   status === "success" ? <>Enviado Correctamente <ShieldCheck size={18} /></> : 
+                   status === "error" ? "Error, intentar de nuevo" : 
+                   "Solicitar evaluación técnica"}
                 </button>
+
+                {status === "success" && (
+                  <p className="text-center text-emerald-400 text-xs font-bold animate-fade-in">
+                    ¡Gracias! Un especialista revisará su caso a la brevedad.
+                  </p>
+                )}
 
                 <p className="text-center text-white/50 text-xs italic">
                   Un especialista se pondrá en contacto a la brevedad.
@@ -208,7 +247,7 @@ const CTASection = () => {
           </div>
         </div>
 
-        {/* Áreas de Experiencia Técnica */}
+        {/* Areas of Experience */}
         <div className="mt-24 pt-12 border-t border-gray-200">
           <div className="text-center mb-16">
             <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gray-900 text-white text-sm font-semibold tracking-wide mb-6">

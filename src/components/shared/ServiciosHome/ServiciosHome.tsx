@@ -10,7 +10,6 @@ import {
   Zap,
   CheckCircle,
   Settings,
-  ArrowRight,
   ChevronRight,
   ListChecks,
   ClipboardCheck,

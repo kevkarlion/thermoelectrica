@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   Mail,
   Phone,
-  MapPin,
   Clock,
   Send,
   MessageSquare,
@@ -43,12 +42,43 @@ const ContactPage = () => {
     ]
   };
 
-  const [status, setStatus] = useState("");
+  // Estado para manejar el envío y errores
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("sending");
-    setTimeout(() => setStatus("success"), 1500);
+
+    const formData = new FormData(e.currentTarget);
+    
+    // Construimos el mensaje combinando empresa y especialidad para que lo recibas todo
+    const datos = {
+      nombre: formData.get("nombre"),
+      email: formData.get("email"),
+      mensaje: `
+        Empresa: ${formData.get("empresa")}
+        Especialidad de interés: ${formData.get("especialidad")}
+        Detalles técnicos: ${formData.get("mensaje")}
+      `,
+    };
+
+    try {
+      const response = await fetch('/api/mail', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+        (e.target as HTMLFormElement).reset();
+      } else {
+        setStatus("error");
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+    }
   };
 
   return (
@@ -86,7 +116,6 @@ const ContactPage = () => {
               </div>
 
               <div className="space-y-4">
-                {/* Teléfono */}
                 <a
                   href={`https://wa.me/${contactData.emergencyWhatsapp.replace(/[^0-9]/g, "")}`}
                   target="_blank"
@@ -102,7 +131,6 @@ const ContactPage = () => {
                   </div>
                 </a>
 
-                {/* Email */}
                 <a
                   href={`mailto:${contactData.email}`}
                   className="flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-200 hover:border-primary/30 transition-colors shadow-sm group"
@@ -117,7 +145,6 @@ const ContactPage = () => {
                 </a>
               </div>
 
-              {/* Redes Sociales - Nueva Sección Integrada */}
               <div className="space-y-4">
                 <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-400 ml-1">
                   Canales Digitales
@@ -143,7 +170,6 @@ const ContactPage = () => {
                 </div>
               </div>
 
-              {/* Horarios */}
               <div className="p-8 bg-primary rounded-3xl text-white relative overflow-hidden shadow-xl">
                 <Clock className="absolute -right-4 -bottom-4 w-32 h-32 text-white/5 rotate-12" />
                 <h3 className="text-lg font-black uppercase italic mb-4 flex items-center gap-2">
@@ -180,6 +206,7 @@ const ContactPage = () => {
                     <div className="space-y-2">
                       <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Nombre Completo</label>
                       <input
+                        name="nombre"
                         type="text"
                         required
                         className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-gray-900 font-bold"
@@ -189,6 +216,7 @@ const ContactPage = () => {
                     <div className="space-y-2">
                       <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Empresa</label>
                       <input
+                        name="empresa"
                         type="text"
                         required
                         className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-gray-900 font-bold"
@@ -196,8 +224,9 @@ const ContactPage = () => {
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Correo Corporativo</label>
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Correo</label>
                       <input
+                        name="email"
                         type="email"
                         required
                         className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-gray-900 font-bold"
@@ -206,7 +235,7 @@ const ContactPage = () => {
                     </div>
                     <div className="space-y-2">
                       <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Especialidad</label>
-                      <select className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all text-gray-900 font-bold appearance-none">
+                      <select name="especialidad" className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all text-gray-900 font-bold appearance-none">
                         <option>HVAC / Climatización</option>
                         <option>Refrigeración Industrial</option>
                         <option>Ingeniería Eléctrica</option>
@@ -217,6 +246,7 @@ const ContactPage = () => {
                     <div className="md:col-span-2 space-y-2">
                       <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Especificaciones Técnicas</label>
                       <textarea
+                        name="mensaje"
                         rows={4}
                         required
                         className="w-full px-6 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-primary transition-all text-gray-900 font-bold resize-none"
@@ -226,14 +256,18 @@ const ContactPage = () => {
 
                     <div className="md:col-span-2 pt-4">
                       <button
+                        type="submit"
                         disabled={status === "sending" || status === "success"}
                         className={`
                           w-full py-5 rounded-xl font-black uppercase tracking-[0.2em] text-sm flex items-center justify-center gap-3 transition-all
-                          ${status === "success" ? "bg-emerald-500 text-white" : "bg-primary hover:bg-gray-900 text-white shadow-lg"}
+                          ${status === "success" ? "bg-emerald-500 text-white" : 
+                            status === "error" ? "bg-red-600 text-white" : "bg-primary hover:bg-gray-900 text-white shadow-lg"}
                         `}
                       >
                         {status === "sending" ? "Procesando..." : status === "success" ? (
                           <>Mensaje Enviado <ShieldCheck size={20} /></>
+                        ) : status === "error" ? (
+                          "Error al enviar, reintentar"
                         ) : (
                           <>Enviar Requerimiento <Send size={18} /></>
                         )}

@@ -91,7 +91,11 @@ const SERVICES_DATA: any = {
       "/services/precision/pre2.webp",
       "/services/precision/pre3.webp",
       "/services/precision/pre4.webp",
-      "/services/precision/pre5.webp"
+      "/services/precision/pre5.webp",
+      "/services/precision/pre6.webp",
+      "/services/precision/pre7.webp",
+      "/services/precision/pre8.webp",
+      "/services/precision/pre9.webp",
     ]
   },
 

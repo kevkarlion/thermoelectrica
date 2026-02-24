@@ -145,11 +145,16 @@ const SERVICES_DATA: any = {
       "Automatismos"
     ],
     images: [
-      "/gallery/electrica/01.jpg",
-      "/gallery/electrica/02.jpg",
-      "/gallery/electrica/03.jpg",
-      "/gallery/electrica/04.jpg",
-      "/gallery/electrica/05.jpg"
+      "/services/electricidad/elec.webp",
+      "/services/electricidad/elec1.webp",
+      "/services/electricidad/elec2.webp",
+      "/services/electricidad/elec3.webp",
+      "/services/electricidad/elec4.webp",
+      "/services/electricidad/elec5.webp",
+      "/services/electricidad/elec6.webp",
+      "/services/electricidad/elec7.webp",
+      "/services/electricidad/elec8.webp",
+      "/services/electricidad/elec9.webp"
     ]
   },
 

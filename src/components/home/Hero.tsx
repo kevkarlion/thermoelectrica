@@ -86,7 +86,9 @@ const Hero = () => {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <Link
-              href="/contact"
+              href="https://wa.me/5491125098629?text=Hola!%20Me%20gustar%C3%ADa%20solicitar%20un%20servicio%20t%C3%A9cnico%20industrial."
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-primary inline-flex items-center justify-center gap-2 shadow-xl hover:scale-105 transition-transform"
             >
               Solicitar Servicio
@@ -94,7 +96,7 @@ const Hero = () => {
             </Link>
 
             <Link
-              href="/services"
+              href="/servicios"
               className="inline-flex items-center justify-center gap-2 px-8 py-4
                 bg-white/5 backdrop-blur border border-white/20 rounded-lg
                 text-white font-bold uppercase text-sm tracking-widest

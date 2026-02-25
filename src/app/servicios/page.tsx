@@ -53,7 +53,7 @@ const ServicesPage = () => {
       slug: "electricidad-industrial",
       icon: <Zap className="w-8 h-8" />,
       description: "Infraestructura eléctrica robusta para soportar sistemas industriales de alta potencia.",
-      features: ["Tableros de Fuerza", "PLC / Scada", "Grupos Electrógenos", "Calidad de Energía"],
+      features: ["Tableros de Fuerza", "PLC / Scada", "Calidad de Energía"],
       color: "border-yellow-500"
     },  
     {
@@ -79,7 +79,7 @@ const ServicesPage = () => {
             Nuestros <span className="text-accent">Servicios</span>
           </h1>
           <p className="text-white/60 max-w-2xl mx-auto font-medium uppercase tracking-widest text-xs">
-            Ingeniería Especializada en Termomecánica y Energía
+            Sistemas Térmicos, Eléctricos y de Climatización
           </p>
         </div>
       </section>

@@ -227,7 +227,7 @@ export default async function Page({ params }: Props) {
         
         <div className="max-w-5xl">
           <span className="text-accent font-black tracking-widest uppercase text-sm">
-            Ingeniería Especializada
+            Sistemas Térmicos, Eléctricos y de Climatización
           </span>
 
           <h1 className="text-5xl md:text-7xl font-black text-gray-950 mt-4 mb-6 uppercase italic tracking-tighter leading-none">

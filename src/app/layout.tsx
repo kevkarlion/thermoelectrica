@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     description: 'Hacemos que funcione - Especialistas en sistemas térmicos y eléctricos',
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Thermolectrica - Servicios Técnicos Industriales',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Thermolectrica | Servicios Técnicos Industriales',
     description: 'Hacemos que funcione - Especialistas en sistemas térmicos y eléctricos',
-    images: ['/images/twitter-image.jpg'],
+    images: ['/og-image.jpg'],
   },
 };
 
@@ -77,14 +77,12 @@ export default function RootLayout({
               "url": "https://thermolectrica.com",
               "logo": "https://thermolectrica.com/images/logo.png",
               "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Av. Industrial 1234",
-                "addressLocality": "Buenos Aires",
+                "addressLocality": "Santa Fe, Argentina",
                 "addressCountry": "AR"
               },
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+54-9-11-1234-5678",
+                "telephone": "+5491125098629",
                 "contactType": "customer service",
                 "availableLanguage": "Spanish"
               }

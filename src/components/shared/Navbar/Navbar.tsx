@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Instagram, Linkedin, Facebook } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,21 +20,18 @@ const Navbar = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // 1. ACTUALIZACIÓN DE SLUGS PARA SEO
   const navItems = [
     { label: 'Inicio', href: '/' },
     { label: 'Servicios', href: '/servicios' },
-    // Estos slugs deben ser IDENTICOS a los del archivo [slug]/page.tsx
     { label: 'HVAC', href: '/servicios/hvac-climatizacion-industrial' },
     { label: 'Frío Industrial', href: '/servicios/refrigeracion-industrial' },
     { label: 'Data Centers', href: '/servicios/refrigeracion-precision-data-centers' },
     { label: 'Amoníaco (NH₃)', href: '/servicios/sistemas-refrigeracion-amoniaco-nh3' },
-    { label: 'Ingeniería Eléctrica', href: '/servicios/ingenieria-electrica-industrial' },
-    { label: 'Mantenimiento', href: '/servicios/mantenimiento-predictivo-analisis' },
+    { label: 'Electricidad Industrial', href: '/servicios/electricidad-industrial' },
+    { label: 'Mantenimiento Preventivo y Predictivo', href: '/servicios/mantenimiento-preventivo-predictivo' },
     { label: 'Contacto', href: '/contacto' },
   ];
 
-  // Separamos los items para la navegación principal y el dropdown
   const mainNav = [navItems[0], navItems[1]]; // Inicio y Servicios
   const servicesDropdown = navItems.slice(2, -1); // Todos los servicios específicos
   const contactItem = navItems[navItems.length - 1]; // Contacto
@@ -91,14 +88,16 @@ const Navbar = () => {
               </Link>
             ))}
 
-            {/* Dropdown de Servicios */}
-            <div className="relative" ref={dropdownRef}>
+            {/* Dropdown de Servicios (hover) */}
+            <div
+              className="relative"
+              ref={dropdownRef}
+              onMouseEnter={() => { cancelCloseDropdown(); setIsDropdownOpen(true); }}
+              onMouseLeave={closeDropdownWithDelay}
+            >
               <button
                 ref={buttonRef}
                 className="flex items-center gap-1 text-gray-900 font-bold uppercase text-[11px] tracking-widest hover:text-accent transition-colors"
-                onMouseEnter={() => { cancelCloseDropdown(); setIsDropdownOpen(true); }}
-                onMouseLeave={closeDropdownWithDelay}
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
                 Especialidades
                 <ChevronDown className={`w-3 h-3 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
@@ -111,8 +110,6 @@ const Navbar = () => {
                   transition-all duration-200 origin-top
                   ${isDropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
                 `}
-                onMouseEnter={cancelCloseDropdown}
-                onMouseLeave={closeDropdownWithDelay}
               >
                 <div className="py-2">
                   {servicesDropdown.map((item) => (
@@ -120,7 +117,6 @@ const Navbar = () => {
                       key={item.label}
                       href={item.href}
                       className="block px-6 py-3 text-[10px] font-black uppercase tracking-tight text-gray-600 hover:bg-gray-50 hover:text-accent transition-all"
-                      onClick={() => setIsDropdownOpen(false)}
                     >
                       {item.label}
                     </Link>
@@ -136,7 +132,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center text-primary"
+            className="lg:hidden w-10 h-10 rounded-lg bg-white flex items-center justify-center text-primary"
             onClick={() => setIsOpen(true)}
           >
             <Menu size={22} />
@@ -144,26 +140,69 @@ const Navbar = () => {
         </div>
       </nav>
 
+      {/* Mobile Drawer Overlay */}
+      <div
+        className={`lg:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm transition-opacity ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => setIsOpen(false)}
+      />
+
       {/* Mobile Drawer */}
-      <div className={`lg:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm transition-opacity ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} onClick={() => setIsOpen(false)} />
-      
-      <div className={`lg:hidden fixed right-0 top-0 h-full w-[80%] max-w-sm z-50 bg-white p-8 transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        <div className="flex justify-between items-center mb-10">
+      <div
+        className={`lg:hidden fixed right-0 top-0 h-full w-[80%] max-w-sm z-50 bg-white p-8 transition-transform duration-300 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+      >
+        <div className="flex justify-between items-center mb-8">
           <span className="font-black uppercase italic tracking-tighter text-primary">Menú</span>
           <button onClick={() => setIsOpen(false)} className="p-2 bg-gray-100 rounded-full"><X size={20} /></button>
         </div>
 
-        <div className="flex flex-col gap-6">
-          {navItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-lg font-black uppercase italic tracking-tighter text-gray-900 border-b border-gray-50 pb-2"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="flex flex-col gap-4">
+          {/* Inicio */}
+          <Link
+            href="/"
+            className="text-lg font-display font-black uppercase tracking-tighter text-gray-900 border-b border-gray-50 pb-2 hover:text-accent hover-lift transition-colors duration-300"
+            onClick={() => setIsOpen(false)}
+          >
+            Inicio
+          </Link>
+
+          {/* Servicios principal clickeable */}
+          <Link
+            href="/servicios"
+            className="text-lg font-display font-black uppercase tracking-tighter text-gray-900 border-b border-gray-50 pb-2 hover:text-accent hover-lift transition-colors duration-300"
+            onClick={() => setIsOpen(false)}
+          >
+            Servicios
+          </Link>
+
+          {/* Lista de servicios específicos */}
+          <div className="flex flex-col gap-2 pl-4">
+            {servicesDropdown.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-base font-display font-semibold uppercase tracking-tight text-gray-700 py-1 hover:text-accent hover-lift transition-colors duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Contacto */}
+          <Link
+            href="/contacto"
+            className="text-lg font-display font-black uppercase tracking-tighter text-gray-900 border-b border-gray-50 pb-2 hover:text-accent hover-lift transition-colors duration-300"
+            onClick={() => setIsOpen(false)}
+          >
+            Contacto
+          </Link>
+
+          {/* Redes sociales */}
+          <div className="flex gap-4 mt-6">
+            <Link href="https://www.instagram.com/thermolectrica/" target="_blank" className="text-gray-700 hover:text-accent transition-colors"><Instagram size={20} /></Link>
+            <Link href="https://www.facebook.com/profile.php?id=61552231003758" target="_blank" className="text-gray-700 hover:text-accent transition-colors"><Facebook size={20} /></Link>
+            <Link href="https://www.linkedin.com/in/thermolectrica-hacemos-que-funcione-b9b0303b0" target="_blank" className="text-gray-700 hover:text-accent transition-colors"><Linkedin size={20} /></Link>
+          </div>
         </div>
       </div>
     </header>

@@ -132,6 +132,7 @@ const CTASection = () => {
                   </a>
                   <a
                     href={`mailto:${contactInfo.email}`}
+                    target="_blank"
                     className="flex items-center justify-center gap-2 bg-white border-2 border-gray-300 text-gray-800 hover:border-accent hover:text-accent font-semibold py-3 px-4 rounded-lg transition-all hover:scale-105"
                   >
                     <Mail className="w-5 h-5" />

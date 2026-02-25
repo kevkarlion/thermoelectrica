@@ -158,14 +158,14 @@ const SERVICES_DATA: any = {
     ]
   },
 
-  "mantenimiento-predictivo-analisis": {
-    title: "Mantenimiento Predictivo",
+  "mantenimiento-preventivo-predictivo": {
+    title: "Mantenimiento Preventivo y Predictivo",
     subtitle: "Gestión Inteligente de Activos",
-    description: "Monitorización avanzada para predecir fallas críticas.",
+    description: "Mantenimiento preventivo y predictivo para optimizar la vida útil de sus activos.",
     specs: [
       { label: "Técnica", value: "Termografía / Vibración" },
       { label: "Frecuencia", value: "Basada en Condición" },
-      { label: "Informes", value: "KPI / Trazabilidad" },
+      { label: "Informes", value: "KPI / Trazabilidad" }, 
       { label: "Software", value: "CMMS" }
     ],
     features: [
@@ -175,11 +175,18 @@ const SERVICES_DATA: any = {
       "Informes técnicos"
     ],
     images: [
-      "/gallery/predictivo/01.jpg",
-      "/gallery/predictivo/02.jpg",
-      "/gallery/predictivo/03.jpg",
-      "/gallery/predictivo/04.jpg",
-      "/gallery/predictivo/05.jpg"
+      "/services/mantenimiento/man.webp",
+      "/services/mantenimiento/man2.webp",
+      "/services/mantenimiento/man3.webp",
+      "/services/mantenimiento/man4.webp",
+      "/services/mantenimiento/man5.webp",
+      "/services/mantenimiento/man6.webp",
+      "/services/mantenimiento/man7.webp",
+      "/services/mantenimiento/man8.webp",
+      "/services/mantenimiento/man9.webp",
+      "/services/mantenimiento/man10.webp",
+      "/services/mantenimiento/man11.webp",
+      "/services/mantenimiento/man12.webp"
     ]
   }
 };

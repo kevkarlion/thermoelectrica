@@ -55,13 +55,13 @@ const ServicesPage = () => {
       description: "Infraestructura eléctrica robusta para soportar sistemas industriales de alta potencia.",
       features: ["Tableros de Fuerza", "PLC / Scada", "Grupos Electrógenos", "Calidad de Energía"],
       color: "border-yellow-500"
-    },
+    },  
     {
-      title: "Mantenimiento Predictivo",
-      slug: "mantenimiento-predictivo-analisis",
+      title: "Mantenimiento Preventivo y Predictivo",
+      slug: "mantenimiento-preventivo-predictivo",
       icon: <Settings className="w-8 h-8" />,
-      description: "Tecnología avanzada para predecir fallas y optimizar la vida útil de sus activos.",
-      features: ["Termografía", "Análisis Vibracional", "Informes KPI", "Gestión de Activos"],
+      description: "Mantenimiento preventivo y predictivo para optimizar la vida útil de sus activos.",
+      features: ["Termografía", "Análisis Vibracional", "Informes KPI", "Gestión de Activos", "Mantenimiento Preventivo", "Mantenimiento Predictivo"],
       color: "border-indigo-600"
     }
   ];

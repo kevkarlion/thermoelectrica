@@ -4,6 +4,9 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { blurDataURLs } from "@/src/data/blurDataURLs";
+
+const getBlur = (src: string) => blurDataURLs[src] || undefined;
 
 type Props = {
   images?: string[];
@@ -95,7 +98,9 @@ export default function ServiceGallery({ images = [] }: Props) {
             alt={`Imagen ${activeIndex + 1}`}
             fill
             priority
-            sizes="100vw"
+            placeholder="blur"
+            blurDataURL={getBlur(images[activeIndex])}
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1200px"
             className="object-cover transition-transform duration-500 ease-out"
             onClick={() => setLightbox(true)}
           />
@@ -147,8 +152,11 @@ export default function ServiceGallery({ images = [] }: Props) {
               <Image
                 src={src}
                 alt={`Miniatura ${i + 1}`}
-                fill
-                sizes="150px"
+                width={160}
+                height={90}
+                placeholder="blur"
+                blurDataURL={getBlur(src)}
+                sizes="(max-width: 768px) 96px, 144px"
                 className="object-cover"
               />
             </button>
@@ -177,6 +185,8 @@ export default function ServiceGallery({ images = [] }: Props) {
         alt={`Imagen grande ${activeIndex + 1}`}
         fill
         priority
+        placeholder="blur"
+        blurDataURL={getBlur(images[activeIndex])}
         sizes="100vw"
         className="object-contain" // Mantiene la proporción sin recortar
       />

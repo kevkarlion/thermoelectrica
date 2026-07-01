@@ -4,6 +4,9 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, ChevronDown, Instagram, Linkedin, Facebook } from 'lucide-react';
+import { blurDataURLs } from "@/src/data/blurDataURLs";
+
+const getBlur = (src: string) => blurDataURLs[src] || undefined;
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -71,6 +74,9 @@ const Navbar = () => {
                 alt="Thermolectrica"
                 fill
                 priority
+                placeholder="blur"
+                blurDataURL={getBlur("/logo-nav.png")}
+                sizes="192px"
                 className="object-contain object-left"
               />
             </div>

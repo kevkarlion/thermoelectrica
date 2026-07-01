@@ -16,6 +16,9 @@ import {
   Shield,
   MessageSquare,
 } from "lucide-react";
+import { blurDataURLs } from "@/src/data/blurDataURLs";
+
+const getBlur = (src: string) => blurDataURLs[src] || undefined;
 
 const ServiciosHome = () => {
   const services = [
@@ -144,6 +147,9 @@ const ServiciosHome = () => {
               src="/img-cta.png"
               alt="Mantenimiento Industrial"
               fill
+              placeholder="blur"
+              blurDataURL={getBlur("/img-cta.png")}
+              sizes="100vw"
               className="object-cover opacity-80" // Subimos al 80% para que se vea casi total
               quality={100}
               priority

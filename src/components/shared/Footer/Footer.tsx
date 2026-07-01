@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -10,6 +8,9 @@ import {
   Instagram,
   MessageCircle,
 } from "lucide-react";
+import { blurDataURLs } from "@/src/data/blurDataURLs";
+
+const getBlur = (src: string) => blurDataURLs[src] || undefined;
 
 const FooterMinimal = () => {
   const serviceLinks = [
@@ -47,6 +48,9 @@ const FooterMinimal = () => {
                 fill
                 className="object-contain filter brightness-110"
                 priority
+                placeholder="blur"
+                blurDataURL={getBlur("/logo-termoe2.png")}
+                sizes="224px"
               />
             </div>
             <p className="text-white/50 text-sm leading-relaxed max-w-sm">

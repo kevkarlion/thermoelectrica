@@ -7,6 +7,9 @@ import {
   Settings,
   CheckCircle,
 } from "lucide-react";
+import { blurDataURLs } from "@/src/data/blurDataURLs";
+
+const getBlur = (src: string) => blurDataURLs[src] || undefined;
 
 const Hero = () => {
   return (
@@ -18,6 +21,10 @@ const Hero = () => {
           alt="Técnico especialista Thermolectrica"
           fill
           priority
+          placeholder="blur"
+          blurDataURL={getBlur("/heross.png")}
+          sizes="100vw"
+          quality={85}
           className="object-cover"
         />
 

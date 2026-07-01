@@ -3,6 +3,9 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { CheckCircle, Info, Shield, Zap } from "lucide-react";
+import { blurDataURLs } from "@/src/data/blurDataURLs";
+
+const getBlur = (src: string) => blurDataURLs[src] || undefined;
 
 interface ServiceCardProps {
   title: string;
@@ -80,6 +83,9 @@ const ServiceCard = ({
               src={image}
               alt={title}
               fill
+              placeholder="blur"
+              blurDataURL={getBlur(image)}
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 400px"
               className="object-cover"
               quality={90}
             />

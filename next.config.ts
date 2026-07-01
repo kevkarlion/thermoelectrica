@@ -1,6 +1,6 @@
 const nextConfig = {
   images: {
-    formats: ["image/webp"],
+    unoptimized: true,
   },
 };
 
